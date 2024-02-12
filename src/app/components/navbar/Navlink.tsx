@@ -21,7 +21,6 @@ const Navlink = () => {
     },
     {
       label: "Kategori Product",
-      link: "/kategori",
       children: [
         {
           label: "Populer",
@@ -45,20 +44,20 @@ const Navlink = () => {
   return (
     <>
       {navItems.map((link, i) => (
-        <Link
+        <div
           key={i}
-          href={link.link ?? "/"}
           className="relative group px-2 py-3 transition-all"
         >
           <div className="flex cursor-pointer items-center gap-2 group-hover:text-red-600 transition-all duration-500">
-            <div>{link.label}</div>
+            <Link href={link.link ?? "/"}>{link.label}</Link>
             {link.children && (
               <PiCaretDown className=" rotate-180 transition-all duration-500 group-hover:rotate-0" />
             )}
           </div>
           {/* dropdown */}
+
           {link.children && (
-              <span className="absolute right-0 top-10 hidden w-auto flex-col gap-1 bg-white py-3 shadow-md transition-all duration-500 group-hover:flex" >
+              <div className="absolute right-0 top-10 hidden w-auto flex-col gap-1 bg-white py-3 shadow-md transition-all duration-500 group-hover:flex" >
                 {link.children.map((ch, index) => (
                   <Link
                     key={index}
@@ -68,9 +67,11 @@ const Navlink = () => {
                     <h1 className=" pl-3">{ch.label}</h1>
                   </Link>
                 ))}
-              </span>
+              </div>
           )}
-        </Link>
+          
+          
+        </div>
       ))}
     </>
   );
