@@ -33,11 +33,14 @@ const Button:React.FC<ButtonProps> = ({
         hover:opacity-80
         transition
         w-full
-        border-slate-700
+        bg-red-600
+        border-white
         flex
         items-center
         justify-center
         gap-2
+        hover:bg-black
+        hover:text-white
         ${outline? "bg-white" : "bg-slate-700"}
         ${outline? "text-slate-700" : "text-white"}
         ${small? "text-sm font-semibold" : "text-md font-semibold"}
