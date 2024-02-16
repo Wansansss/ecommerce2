@@ -89,10 +89,10 @@ function SideBar() {
             ))}
           </div>
           <div className="flex flex-col mt-6 text-base items-center gap-1">
-            <Link href={"/login"} className="flex items-center justify-center shadow-lg shadow-black bg-slate-600 w-full rounded-xl hover:bg-red-600 transition-all duration-300 p-2 font-semibold hover:scale-105">
+            <Link href={"/login"} className="flex items-center justify-center shadow-lg shadow-black bg-red-600 w-full rounded-xl hover:bg-black hover:text-white transition-all duration-300 p-2 font-semibold hover:scale-105">
               LOGIN
             </Link>
-            <Link href={"/register"} className="flex items-center justify-center border w-full rounded-xl hover:bg-red-600 transition-all duration-300 shadow-lg shadow-white p-2 font-semibold hover:scale-105">
+            <Link href={"/register"} className="flex items-center justify-center border w-full rounded-xl bg-red-600 hover:bg-black hover:text-white transition-all duration-300 shadow-lg shadow-white p-2 font-semibold hover:scale-105">
               REGISTER
             </Link>
           </div>
