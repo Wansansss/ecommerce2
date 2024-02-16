@@ -25,7 +25,9 @@ const ProductCard:React.FC<ProductCardProps>= ({data}) => {
       col-span-1 
       cursor-pointer 
       border-[2px] 
-      bg-slate-50 
+      bg-slate-50
+      hover:text-red-600 
+      hover:border-red-600
       rounded-sm 
       p-2 
       transition hover:scale-110 
