@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Heading from "../components/Heading";
-import Input from "../components/inputusers/Input";
+import Heading from "../../components/utils/Heading";
+import Input from "../../components/utils/inputusers/Input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import Button from "../components/Button";
+import Button from "../../components/utils/Button";
 import Link from "next/link";
 
 const RegisterForm = () => {
