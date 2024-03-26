@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Quattrocento_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
+import Navbar from "../components/navbar/Navbar";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import Footer from "@/components/footer/Footer";
 
 const font = Quattrocento_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
