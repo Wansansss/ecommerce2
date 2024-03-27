@@ -4,6 +4,7 @@ import Container from "@/components/utils/Container";
 import ProductImages from "@/components/utils/products/ProductImages";
 import SetQuantity from "@/components/utils/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
+import { formatPrice } from "@/libs/formatPrice";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -106,9 +107,12 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
           handleSelect={handleSelect}
         />
         <div className="flex flex-col gap-1 text-slate-500 text-sm">
-          <h2 className="text-3xl font-medium text-black">
+          <h2 className="text-3xl font-bold text-black">
             {data.productName}
           </h2>
+          <h1 className="text-xl font-semibold text-black">
+            {formatPrice(data.amount)}
+          </h1>
           <div className="flex items-center gap-2">
             <Rating value={data.ratingByClick} readOnly />
             <div>{data.totalProductSell} Terjual</div>
