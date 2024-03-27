@@ -1,6 +1,5 @@
 'use client'
 
-import { Icon } from "@mui/material";
 import { IconType } from "react-icons";
 
 interface ButtonProps{
@@ -25,7 +24,8 @@ const Button:React.FC<ButtonProps> = ({
 }) => {
     
     return ( 
-        <button 
+        <button
+        onClick={onClick} 
         disabled={disabled}
         className={`
         disabled:opacity-70
