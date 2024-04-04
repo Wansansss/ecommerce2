@@ -13,7 +13,7 @@ const CartClient = () => {
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
-      <div className=" flex flex-col items-center mt-40 mx-8">
+      <div className=" flex flex-col items-center mt-40 mx-8 mb-10">
         <div className="text-2xl">Tidak Ada Product</div>
         <div>
           <Link
