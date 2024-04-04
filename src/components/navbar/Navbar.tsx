@@ -35,16 +35,12 @@ const Navbar = () => {
                 
                 <div className="flex items-center gap-4">
                   <button className="hover:text-red-600 transition-all duration-500">
-                    <FaHeart/>
-                  </button>
-                  <button className="hover:text-red-600 transition-all duration-500">
                     <FaShoppingCart />
                   </button>
                   <Link
                     href={"/login"}
                     className=" hidden md:flex items-center gap-1 hover:text-red-600 transition-all duration-500"
                   >
-                    <MdAccountCircle />
                     LOGIN
                   </Link>
                 </div>
