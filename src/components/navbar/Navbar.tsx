@@ -8,6 +8,7 @@ import SideBar from "./SideBar";
 import Container from "../utils/Container";
 import Image from "next/image";
 import InputSearch from "./InputSearch";
+import CartCount from "./CartCount";
 
 const Navbar = () => {
   return (
@@ -34,9 +35,7 @@ const Navbar = () => {
                 </div>
                 
                 <div className="flex items-center gap-4">
-                  <button className="hover:text-red-600 transition-all duration-500">
-                    <FaShoppingCart />
-                  </button>
+                  <CartCount/>
                   <Link
                     href={"/login"}
                     className=" hidden md:flex items-center gap-1 hover:text-red-600 transition-all duration-500"
