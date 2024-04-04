@@ -61,8 +61,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
         setIsProductInCart(true);
       }
     }
-  }),
-    [cartProducts];
+  },[cartProducts])
+    
 
   const handleSelect = useCallback((value: SelectedImgType) => {
     setCartProduct((prev) => {
