@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import SingleNav from "./SingleNav";
 import { FiMenu } from "react-icons/fi";
-import { IoSearchOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
 import InputSearch from "./InputSearch";
+import CartCount from "./CartCount";
 
 type NavItem = {
   label: string;
@@ -58,9 +58,7 @@ function SideBar() {
         <div className="flex md:hidden">
           <InputSearch />
         </div>
-        <button className="hover:text-red-600 transition-all duration-500 md:hidden lg:hidden xl:hidden">
-          <FaShoppingCart size={20} />
-        </button>
+        <CartCount/>
         <button
           onClick={handleNav}
           className="hover:text-red-600 transition-all duration-500 md:hidden lg:hidden xl:hidden"
