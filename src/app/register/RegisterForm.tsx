@@ -18,13 +18,12 @@ const RegisterForm = () => {
       name: "",
       email: "",
       password: "",
+      alamat: "",
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setisLoading(true);
-    console.log(data);
-    console.log("test")
   };
   return (
     <>
