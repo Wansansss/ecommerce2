@@ -5,7 +5,6 @@ import ProductDetails from "./ProductDetails";
 
 const Page = async ({params}:any) => {
   const product = await getProductDetail(params.Id)
-  console.log(product);
   return(
    <Container>
     <ProductDetails data={product.data}/>
