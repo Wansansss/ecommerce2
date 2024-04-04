@@ -40,9 +40,9 @@ const Button:React.FC<ButtonProps> = ({
         items-center
         justify-center
         gap-2
-        hover:bg-black
-        hover:text-white
-        ${outline? "bg-white" : "bg-red-700"}
+        hover:bg-transparent
+        hover:text-black
+        ${outline? "bg-white" : "bg-red-600"}
         ${outline? "text-slate-700" : "text-white"}
         ${small? "text-sm font-semibold" : "text-md font-semibold"}
         ${small? "py-1 px-2 border-[1px]" : "py-3 px-4 border-2"}
