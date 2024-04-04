@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/footer/Footer";
 import CartProviders from "@/providers/CartProviders";
+import { Toaster } from "react-hot-toast";
 
 const font = Quattrocento_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -22,6 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className} suppressHydrationWarning={true}>
+        <Toaster toastOptions={{
+          style: {
+            background: "rgba(0, 0, 0, 0.8)",
+            color: "#fff",
+            borderRadius: "10px",
+            padding: "10px",
+          },
+        }} />
         <CartProviders>
           <div className="flex flex-col min-h-screen">
             <Navbar />
