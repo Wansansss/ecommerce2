@@ -1,15 +1,16 @@
 "use client";
 
-import { UseFormRegister, FieldValues, FieldErrors } from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+
 
 interface InputProps {
   id: string;
   label: string;
   type?: string;
   disabled?: boolean;
-  required?: boolean;
-  register: UseFormRegister<FieldValues>;
+  register:UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  required?: boolean;
 }
 
 const input: React.FC<InputProps> = ({
@@ -17,9 +18,9 @@ const input: React.FC<InputProps> = ({
   label,
   type,
   disabled,
-  required,
   register,
   errors,
+  required,
 }) => {
   return (
     <div className=" w-full relative">
@@ -27,7 +28,7 @@ const input: React.FC<InputProps> = ({
         autoComplete="off"
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
+        {...register(id,{required})}
         placeholder=""
         type={type}
         className={`
