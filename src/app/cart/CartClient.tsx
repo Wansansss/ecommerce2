@@ -31,7 +31,7 @@ const CartClient = () => {
   return (
     <div>
       <Heading title="Keranjang Anda" center />
-      <div className="grid grid-cols-5 text-md gap-4 pb-2 mt-8 items-center">
+      <div className="grid grid-cols-5 sm:text-xs md:text-md md:gap-4 pb-2 mt-8 items-center">
         <div className="col-span-2 justify-self-start">Produk</div>
         <div className="justify-self-center">Harga</div>
         <div className="justify-self-center">Jumlah</div>
