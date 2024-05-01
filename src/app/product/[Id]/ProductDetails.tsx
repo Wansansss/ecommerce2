@@ -32,7 +32,7 @@ export type SelectedImgType = {
 };
 
 const Horizontal = () => {
-  return <hr className="w-[30% my-2]" />;
+  return <hr className="w-[30% my-2] h-1 bg-red-600" />;
 };
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
@@ -151,8 +151,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
             </>
           ) : (
             <>
-              Warna
-              <Horizontal />
               <SetQuantity
                 cartProduct={cartProduct}
                 handleQtyIncrease={handleQtyIncrease}
