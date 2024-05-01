@@ -1,9 +1,8 @@
-"use client"
-
+import { getKategoriList } from "@/libs/api";
 import Link from "next/link";
 import { PiCaretDown } from "react-icons/pi";
 
-const Navlink = () => {
+const Navlink = async () => {
   type NavItem = {
     label: string;
     link?: string;
@@ -41,6 +40,7 @@ const Navlink = () => {
       link: "/contact",
     },
   ];
+  const kategori = await getKategoriList()
   return (
     <>
       {navItems.map((link, i) => (
@@ -50,6 +50,7 @@ const Navlink = () => {
         >
           <div className="flex cursor-pointer items-center gap-2 group-hover:text-red-600 transition-all duration-500">
             <Link href={link.link ?? "/"}>{link.label}</Link>
+            
             {link.children && (
               <PiCaretDown className=" rotate-180 transition-all duration-500 group-hover:rotate-0" />
             )}
@@ -58,13 +59,13 @@ const Navlink = () => {
 
           {link.children && (
               <div className="absolute right-0 top-10 hidden w-auto flex-col gap-1 bg-white py-3 shadow-md transition-all duration-500 group-hover:flex" >
-                {link.children.map((ch, index) => (
+                {kategori.data.map((ch:any, index:any) => (
                   <Link
                     key={index}
-                    href={ch.link ?? "/"}
+                    href={`/kategori/${ch.categorySecureId}`}
                     className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-neutral-400 hover:text-red-600"
                   >
-                    <h1 className=" pl-3">{ch.label}</h1>
+                    <h1 className=" pl-3">{ch.categoryName}</h1>
                   </Link>
                 ))}
               </div>
