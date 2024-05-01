@@ -1,13 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heading from "../../components/utils/Heading";
 import Input from "../../components/utils/inputusers/Input";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../../components/utils/Button";
 import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { AiOutlineGoogle } from "react-icons/ai";
+import { SafeUser } from "@/types";
+import { User } from "next-auth";
 
-const RegisterForm = () => {
+interface RegisterFormProps {
+  currentUser: any
+}
+
+const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
   const [isLoading, setisLoading] = useState(false);
   const {
     register,
@@ -15,23 +26,65 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
+      fullName: "",
+      username: "",
       email: "",
       password: "",
-      alamat: "",
+      role:["USER"],
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const router = useRouter();
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/");
+      router.refresh();
+    }
+  }, []);
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setisLoading(true);
+    await axios
+      .post("/api/signup",data)
+      .then(() => {
+    signIn("credentials", {
+      username: data.username,
+      password: data.password,
+      redirect: false,
+    }).then((callback) => {
+      if (callback?.ok) {
+        router.push("/login");
+        router.refresh();
+        toast.success("Berhasil Mendaftar");
+      }
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
+    })
+    .catch(() => toast.error("Gagal Mendaftar"))
+    .finally(() => {
+      setisLoading(false);
+    });
   };
+  if (currentUser) {
+    return <p className="text-center">Anda Sudah Login...</p>;
+  }
   return (
     <>
-      <Heading title="Sign Up" />
-      <hr className="bg-slate-300 w-full h-px" />
+      <Heading title="Sign Up For Sinar Lestari" />
+      <hr className="bg-red-600 w-full h-2" />
       <Input
-        id="name"
-        label="Nama"
+        id="fullName"
+        label="fullName"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="username"
+        label="username"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -46,21 +99,13 @@ const RegisterForm = () => {
         required
       />
       <Input
-        id="alamat"
-        label="Alamat Lengkap"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      />
-      <Input
         id="password"
         label="Password"
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
         type="password"
+        required
       />
       <Button
         label={isLoading ? "Loading" : "Sign Up"}
