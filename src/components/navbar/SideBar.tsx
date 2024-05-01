@@ -1,11 +1,15 @@
+/* eslint-disable @next/next/no-async-client-component */
+"use client";
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import SingleNav from "./SingleNav";
 import { FiMenu } from "react-icons/fi";
-import { FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
 import InputSearch from "./InputSearch";
 import CartCount from "./CartCount";
+import { User } from "next-auth";
+import MenuItem from "./MenuItem";
+import { signOut } from "next-auth/react";
 
 type NavItem = {
   label: string;
@@ -23,29 +27,16 @@ const navItems: NavItem[] = [
     link: "/promo",
   },
   {
-    label: "Kategori Product",
-    children: [
-      {
-        label: "Populer",
-        link: "/populer",
-      },
-      {
-        label: "Terbaru",
-        link: "/terbaru",
-      },
-      {
-        label: "Terlaris",
-        link: "/terlaris",
-      },
-    ],
-  },
-  {
     label: "Contact Us",
     link: "/contact",
   },
 ];
 
-function SideBar() {
+interface SideBarProps {
+  currentUser: any
+}
+
+const SideBar: React.FC<SideBarProps> = ({ currentUser }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNav = () => {
@@ -58,7 +49,10 @@ function SideBar() {
         <div className="flex md:hidden">
           <InputSearch />
         </div>
-        <CartCount/>
+        <div className="md:hidden">
+          <CartCount />
+        </div>
+
         <button
           onClick={handleNav}
           className="hover:text-red-600 transition-all duration-500 md:hidden lg:hidden xl:hidden"
@@ -80,29 +74,41 @@ function SideBar() {
           </div>
           <div className="flex flex-col text-base gap-2 transition-all">
             {navItems.map((d, i) => (
-              <SingleNav key={i} label={d.label} link={d.link}>
-                {d.children}
-              </SingleNav>
+              <SingleNav key={i} label={d.label} link={d.link} />
             ))}
           </div>
-          <div className="flex flex-col mt-6 text-base items-center gap-1">
-            <Link
-              href={"/login"}
-              className="flex items-center justify-center shadow-lg shadow-black bg-red-600 w-full rounded-xl hover:bg-black hover:text-white transition-all duration-300 p-2 font-semibold hover:scale-105"
-            >
-              LOGIN
-            </Link>
-            <Link
-              href={"/register"}
-              className="flex items-center justify-center border w-full rounded-xl bg-red-600 hover:bg-black hover:text-white transition-all duration-300 shadow-lg shadow-white p-2 font-semibold hover:scale-105"
-            >
-              REGISTER
-            </Link>
-          </div>
+          {!currentUser ? (
+            <div className="flex flex-col mt-6 text-base items-center gap-1">
+              <Link
+                href={"/login"}
+                className="flex items-center justify-center shadow-lg shadow-black bg-red-600 w-full rounded-xl hover:bg-black hover:text-white transition-all duration-300 p-2 font-semibold hover:scale-105"
+              >
+                Login
+              </Link>
+              <Link
+                href={"/register"}
+                className="flex items-center justify-center border w-full rounded-xl bg-red-600 hover:bg-black hover:text-white transition-all duration-300 shadow-lg shadow-white p-2 font-semibold hover:scale-105"
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col mt-6 text-base items-center gap-1 cursor-pointer">
+              <div className="flex items-center justify-center border w-full rounded-xl bg-red-600 hover:bg-black hover:text-white transition-all duration-300 shadow-lg shadow-white font-semibold hover:scale-105">
+                <MenuItem
+                  onClick={() => {
+                    signOut();
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default SideBar;
