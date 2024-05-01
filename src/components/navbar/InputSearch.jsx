@@ -9,14 +9,13 @@ const InputSearch = () => {
   const router = useRouter();
 
   const handleSearch = (event) => {
-    const keyword = searchRef.current.value;
+    const value = searchRef.current.value;
 
-    if (!keyword || keyword.trim() == "") return
+    if (!value || value.trim() == "") return
 
     if (event.key === "Enter" || event.type === "click") {
       event.preventDefault();
-
-      router.push(`/search/${keyword}`);
+      router.push(`/search/${value}`);
     }
   };
 
