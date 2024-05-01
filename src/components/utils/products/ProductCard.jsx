@@ -12,12 +12,12 @@ const ProductCard = ({ list }) => {
         {list.data?.map((data) => (
           <Link
             key={data.productSecureId}
-            href={`product/${data.productSecureId}`}
+            href={`/product/${data.productSecureId}`}
             className="flex flex-col items-center justify-center border border-black max-h-[200px] max-w-[400px]"
           >
             <Image
               className="block items-center justify-center max-h-[80%] max-w-[100%] object-fill border border-white p-2"
-              src={data.fileUrlListed}
+              src={`/assets/img/${data.fileUrlList[0]}`}
               alt={data.productName}
               width={100}
               height={100}
