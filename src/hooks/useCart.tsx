@@ -1,5 +1,4 @@
 import { CartProductType } from "@/app/product/[Id]/ProductDetails";
-import { error } from "console";
 import {
   createContext,
   useCallback,
@@ -25,6 +24,8 @@ export const CartContext = createContext<CartContextProps | null>(null);
 interface Props {
   [propName: string]: any;
 }
+
+
 
 export const CartContextProvider = (props: Props) => {
   const [cartTotalQty, setCartTotalQty] = useState(0);
@@ -62,20 +63,20 @@ export const CartContextProvider = (props: Props) => {
     getTotals();
   }, [cartProducts]);
 
-  const handleAddProductToCart = useCallback((product: CartProductType) => {
-    setCartProducts((prev) => {
-      let updatedCart;
-
-      if (prev) {
-        updatedCart = [...prev, product];
-      } else {
-        updatedCart = [product];
-      }
-      toast.success("Berhasil Ditambahkan Ke Keranjang");
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
-  }, []);
+  const handleAddProductToCart = async(product: CartProductType) => {
+      setCartProducts((prev) => {
+        let updatedCart
+        if (prev) {
+          updatedCart = [...prev, product];
+        } else {
+          updatedCart = [product];
+        }
+        toast.success("Berhasil Ditambahkan Ke Keranjang");
+        localStorage.setItem("data", JSON.stringify(updatedCart));
+        return updatedCart;
+      });
+    
+  };
 
   const handleRemoveProductFromCart = useCallback(
     (product: CartProductType) => {
