@@ -9,7 +9,7 @@ interface ButtonProps{
     small?:boolean,
     custom?:string,
     icon?: IconType
-    onClick: (e:React.MouseEvent<HTMLButtonElement>) => void
+    onClick?: (e:React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Button:React.FC<ButtonProps> = ({
@@ -35,7 +35,7 @@ const Button:React.FC<ButtonProps> = ({
         transition
         w-full
         bg-red-600
-        border-white
+        border-slate-400
         flex
         items-center
         justify-center
