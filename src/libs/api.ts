@@ -1,11 +1,30 @@
-export const getProductList = async () => {
-  const response = await fetch("http://89.116.134.204:8011/api/sl/v1/web/product/pagination/list?page=1&limit=10&productName=tes");
+export const getSearchProduct = async (value:any) => {
+  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/search?page=1&limit=10&value=${value}`);
+  if (!response.ok) {
+    throw new Error("failed fetch data");
+  }
+  const search = await response.json();
+  return search;
+};
+
+export const getProductPromo = async (query?:any) =>{
+  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/promo?page=1&limit=10`);
   if (!response.ok) {
     throw new Error("failed fetch data");
   }
   const product = await response.json();
   return product;
-};
+}
+
+export const getProductList = async (query?:any) =>{
+  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/list?productName=${query}`);
+  if (!response.ok) {
+    throw new Error("failed fetch data");
+  }
+  const product = await response.json();
+  return product;
+}
+
 
 export const getProductDetail = async (productSecureId:any) => {
   const res = await fetch(
@@ -24,8 +43,26 @@ export const getKategoriList = async () => {
   return kategori
 };
 
-export const getKategoriDetail = async (categorySecureId:any) => {
-  const res = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product-category?secureId=${categorySecureId}`)
+export const getKategoriDetail = async (query:any) => {
+  const res = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/category/list?${query}`);
   const data = res.json()
   return data
 };
+
+export const getUserList = async () => {
+  const response = await fetch("http://89.116.134.204:8011/api/sl/v1/web/users/list")
+  if (!response.ok) {
+    throw new Error("failed fetch data")    
+  }
+  const user = await response.json();
+  return user
+}
+
+export const getUserById = async (secureId:any) => {
+  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/users?secureId=${secureId}`)
+  if (!response.ok) {
+    throw new Error("failed fetch data")    
+  }
+  const user = await response.json();
+  return user
+}
