@@ -20,7 +20,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
   } = useCart();
 
   return (
-    <div className="grid grid-cols-5 text-sm md:text-md gap-4 border-t-[1.5px] border-red-600 items-center">
+    <div className="grid grid-cols-5 text-xs md:text-md sm:space-x-8 gap-4 border-t-[1.5px] border-red-600 items-center">
       <div className="col-span-2 justify-self-start flex gap-2 md:gap-4 ">
         <Link href={`/product/${item.productSecureId}`}>
           <div className="relative w-[70px] aspect-square">
