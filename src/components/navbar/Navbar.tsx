@@ -1,19 +1,19 @@
-"use client";
-
 import Link from "next/link";
 import Navlink from "./Navlink";
-import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import { MdAccountCircle } from "react-icons/md";
 import SideBar from "./SideBar";
 import Container from "../utils/Container";
 import Image from "next/image";
 import InputSearch from "./InputSearch";
 import CartCount from "./CartCount";
+import UserMenu from "./UserMenu";
+import { getSession } from "@/actions/getCurrentUser";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const user = await getSession();
+
   return (
-      <Container>
         <nav className="fixed top-0 left-0 right-0 z-10 bg-slate-300 px-4 bg-opacity-90">
+           <Container>
           <section className="flex flex-wrap items-center justify-between p-4">
             <Link href={"/"}>
               <Image
@@ -25,7 +25,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <SideBar />
+            <SideBar currentUser={user} />
 
             <div className="hidden md:block md:w-auto">
               <ul className=" flex p-2 md:p-0 md:space-x-6 space-x-0">
@@ -36,18 +36,16 @@ const Navbar = () => {
                 
                 <div className="flex items-center gap-4">
                   <CartCount/>
-                  <Link
-                    href={"/login"}
-                    className=" hidden md:flex items-center gap-1 hover:text-red-600 transition-all duration-500"
-                  >
-                    LOGIN
-                  </Link>
+                  
+                  <UserMenu currentUser={user}/>
+                  
                 </div>
               </ul>
             </div>
           </section>
+          </Container>
         </nav>
-      </Container>
+      
   );
 };
 
