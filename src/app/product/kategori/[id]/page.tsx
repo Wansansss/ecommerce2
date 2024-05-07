@@ -1,44 +1,39 @@
+import Container from "@/components/utils/Container";
+import Heading from "@/components/utils/Heading";
 import NotFound from "@/components/utils/NotFound";
 import ProductCard from "@/components/utils/products/ProductCard";
-import { getKategoriDetail } from "@/libs/api";
-import Link from "next/link";
+import { getProduct } from "@/libs/api";
 import React from "react";
+import Filter from "@/components/utils/Filter";
 
 const Page = async ({ params }: any) => {
-  const data = await getKategoriDetail(`page=1&categorySecureId=${params.id}`);
-  if(data.status !== "OK") {
-    return (
-      <NotFound title="Product Tidak Ditemukan..."/>
-    )
-  } 
-    return (
-      <>
-        <div className="pt-44 font-bold">
-          {data.data?.map((list: any, i: any) => {
-            return (
-              <div key={i}>
-                <h1>Kategori: {list.categoryName}</h1>
-                <hr className="bg-red-600 h-2" />
-              </div>
-            );
-          })}
-        </div>
-        {/* <div className="flex flex-row justify-between py-10 px-10">
-          <div className="flex flex-col px-10">
-              <h6 className="font-bold">Product Kategori</h6>
-            <div className="">
-  
-            </div>
-          </div> */}
-          
+  const id = params.id;
+  const data = await getProduct("/category/list", `categorySecureId=${id}`);
+  const filter = await getProduct("/filter",'')
+
+  if (data.status !== "OK") {
+    return <NotFound title="Product Tidak Ditemukan..." />;
+  }
+  return (
+    <Container>
+      <div className="pt-44 font-bold">
+        <div className="">
+          <div className="h-full">
+            <Heading title="Filter Product" />
+            <Filter />
+          </div>
           <div>
+            <div className="px-4 w-full">
+              <Heading title="Product" />
+              <hr className="h-1 bg-red-600" />
+            </div>
             <ProductCard list={data} />
           </div>
-        {/* </div> */}
-      </>
-    )
-
-  
+        </div>
+      </div>
+      <div></div>
+    </Container>
+  );
 };
 
 export default Page;
