@@ -3,7 +3,7 @@ import ProductCard from "@/components/utils/products/ProductCard";
 import {getProductPromo } from "@/libs/api";
 
 const Page = async () => {
-    const products = await getProductPromo()
+    const products = await getProductPromo("page=1")
   return (
     <Container>
       <div className="py-16">
