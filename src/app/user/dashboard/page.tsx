@@ -1,11 +1,9 @@
 import { getSession } from "@/actions/getCurrentUser";
 import Button from "@/components/utils/Button";
-import Heading from "@/components/utils/Heading";
 import { getAccountDetail } from "@/libs/api";
 import Link from "next/link";
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Dashboard = async () => {
   const user = await getSession()
