@@ -1,11 +1,12 @@
 import Container from "@/components/utils/Container";
-import { getProductDetail} from "@/libs/api";
-import ProductDetails from "./ProductDetails";
+import { getProduct } from "@/libs/api";
 import NotFound from "@/components/utils/NotFound";
+import ProductDetails from "./ProductDetails";
 
 
 const Page = async ({params}:any) => {
-  const product = await getProductDetail(params.Id)
+  const id= params.Id
+  const product = await getProduct("",`secureId=${id}`)
   if(product.status !== "OK") {
     return(
       <NotFound title="Product Tidak Ditemukan..."/>
