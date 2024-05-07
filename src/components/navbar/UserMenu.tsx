@@ -7,14 +7,15 @@ import Link from "next/link";
 import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
-
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
-  currentUser: any
+  currentUser: any;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -34,22 +35,27 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         </div>
         {isOpen && (
           <div className="absolute rounded-md shadow-lg shadow-black w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
-            {currentUser? (
+            {currentUser ? (
               <div>
-                <Link href="/user/dashboard/historyTransaksi" className="hover:text-red-600">
+                <Link
+                  href="/user/dashboard/historyTransaksi"
+                  className="hover:text-red-600"
+                >
                   <MenuItem onClick={toggleOpen}> Your Orders </MenuItem>
                 </Link>
                 <Link href="/user/dashboard" className="hover:text-red-600">
                   <MenuItem onClick={toggleOpen}>Dashboard </MenuItem>
                 </Link>
+                {/* <Link href="/login" className="hover:text-red-600"> */}
                 <MenuItem
                   onClick={() => {
                     toggleOpen();
-                    signOut();
+                    signOut({ callbackUrl: "/login" });
                   }}
                 >
                   Logout
                 </MenuItem>
+                {/* </Link> */}
               </div>
             ) : (
               <div>
@@ -61,6 +67,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 </Link>
               </div>
             )}
+            
           </div>
         )}
       </div>
