@@ -5,11 +5,8 @@ import Heading from "../Heading";
 import Input from "../inputusers/Input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../Button";
-import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { AiOutlineGoogle } from "react-icons/ai";
 import axios from "axios";
 
 interface FormAlamatProps {
