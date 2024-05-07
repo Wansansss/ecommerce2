@@ -7,7 +7,6 @@ import { FiMenu } from "react-icons/fi";
 import Link from "next/link";
 import InputSearch from "./InputSearch";
 import CartCount from "./CartCount";
-import { User } from "next-auth";
 import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 
