@@ -1,43 +1,20 @@
-export const getSearchProduct = async (value:any) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product/search?page=1&limit=10&value=${value}`);
-  const search = await response.json();
-  return search;
-};
-
-export const getProductPromo = async (query?:any) =>{
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+ `/api/sl/v1/web/product/promo?${query}`);
-  const product = await response.json();
-  return product;
-}
-
-export const getProductList = async (query?:any) =>{
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+ `/api/sl/v1/web/product/list?productName=${query}`);
-  const product = await response.json();
-  return product;
-}
-
-
-export const getProductDetail = async (productSecureId:any) => {
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product?secureId=${productSecureId}`
-  );
-  const data = res.json();
+export const getProduct = async (resource?:any,query?:any) => {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product${resource}?${query}`,{
+    next: {
+      revalidate:3600
+    }
+  })
+  const data = await response.json();
   return data;
 };
 
+
 export const getKategoriList = async () => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/product-category/list")
-  if (!response.ok) {
-    throw new Error("failed fetch data")    
-  }
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/product-category/list",{
+    next: {revalidate:3600}
+  })
   const kategori = await response.json();
   return kategori
-};
-
-export const getKategoriDetail = async (query:any) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/product/category/list?${query}`);
-  const data = res.json()
-  return data
 };
 
 export const getUserList = async () => {
