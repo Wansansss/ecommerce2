@@ -4,6 +4,9 @@ const nextConfig = {
         remotePatterns:[
             {
                 hostname: "m.media-amazon.com"    
+            },
+            {
+                hostname: "89.116.134.204"
             }
             
         ]
