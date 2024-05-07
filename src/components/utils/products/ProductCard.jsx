@@ -17,7 +17,7 @@ const ProductCard = ({ list }) => {
           >
             <Image
               className="block items-center justify-center max-h-[80%] max-w-[100%] object-fill border border-white p-2"
-              src={`/assets/img/${data.fileUrlList[0]}`}
+              src={data.fileUrlList[0]}
               alt={data.productName}
               width={100}
               height={100}
