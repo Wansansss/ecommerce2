@@ -7,9 +7,12 @@ const Register = async() => {
     const user = await getSession();
     return ( 
         <Container>
+            <div className="py-16">
             <FormWrap>
                 <RegisterForm currentUser={user}/>
             </FormWrap>
+            </div>
+            
         </Container>
 
      );
