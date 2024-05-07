@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/footer/Footer";
 import CartProviders from "@/providers/CartProviders";
 import { Toaster } from "react-hot-toast";
-import Container from "@/components/utils/Container";
 
 const font = Quattrocento_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
