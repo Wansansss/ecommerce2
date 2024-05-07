@@ -19,7 +19,7 @@ export const authOptions: AuthOptions = {
                     type: 'password',
                 }
             }, async authorize(credentials) {
-                const res = await fetch("http://89.116.134.204:8011/api/sl/v1/web/users/signin", {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/users/signin", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -54,7 +54,6 @@ export const authOptions: AuthOptions = {
                
             } 
             if (session?.user.address === undefined || null) {
-                
                 const account = await getAccountDetail(token.userSecureId)
                 session.user.address = account.data.address
             }
