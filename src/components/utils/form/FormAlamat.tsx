@@ -32,12 +32,12 @@ const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
 
   const router = useRouter();
 
-    useEffect(()=> {
-      if(!currentUser){
-        router.push("/login");
-        router.refresh();
-      }
-    },[])
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/login");
+      router.refresh();
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setisLoading(true);
@@ -66,26 +66,19 @@ const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
   return (
     <>
       <Heading title="Lengkapi Alamat" />
-      <hr className="bg-red-600 w-full h-2" />
+      <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="address"
-        label="Address"
+        label="Nama Jalan"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
-      <Input
-        id="city"
-        label="City"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      />
+
       <Input
         id="village"
-        label="Village"
+        label="Kelurahan"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -93,15 +86,15 @@ const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
       />
       <Input
         id="subDistrict"
-        label="SubDistrict"
+        label="Kecamatan"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
       <Input
-        id="postalCode"
-        label="Postal Code"
+        id="city"
+        label="Kota"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -109,12 +102,21 @@ const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
       />
       <Input
         id="province"
-        label="Province"
+        label="Provinsi"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
+      <Input
+        id="postalCode"
+        label="Kode Pos"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+
       <Button
         label={isLoading ? "Loading" : "Submit"}
         onClick={handleSubmit(onSubmit)}
