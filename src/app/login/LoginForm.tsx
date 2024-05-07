@@ -9,7 +9,6 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { AiOutlineGoogle } from "react-icons/ai";
 
 interface LoginFormProps{
   currentUser: any
