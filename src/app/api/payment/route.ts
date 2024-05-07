@@ -34,7 +34,7 @@ export async function POST(request: Request){
         
 
     } else {
-        const paymentOrder = await axios.post("http://89.116.134.204:8011/api/sl/v1/web/cart",orderData)
+        const paymentOrder = await axios.post(process.env.NEXT_PUBLIC_API_URL+ "/api/sl/v1/web/cart",orderData)
         return NextResponse.json(paymentOrder)
     }
 }
