@@ -16,9 +16,16 @@ const Dashboard = async () => {
     <div className="py-16">
       <div className="py-12 px-8 flex md:flex-col items-center justify-center gap-4 text-slate-500 border-slate-500">
         <FaUserCircle size={100} />
-        <div className="px-4 items-center justify-center text-3xl font-bold text-black">
+        {currentUser?.data.address === null ?(
+          <div className="px-4 items-center justify-center text-3xl font-bold text-black">
+          Welcome,{currentUser?.data.fullName}
+        </div>
+        ):(
+<div className="px-4 items-center justify-center text-3xl font-bold text-black">
           Welcome,{currentUser?.data.accountName}
         </div>
+        )}
+        
       </div>
       <div className="flex flex-col px-24 gap-2 text-xl font-bold text-black">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-8">
