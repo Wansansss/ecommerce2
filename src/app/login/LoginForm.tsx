@@ -10,9 +10,6 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { AiOutlineGoogle } from "react-icons/ai";
-import axios from "axios";
-import { headers } from "next/headers";
-import { User } from "next-auth";
 
 interface LoginFormProps{
   currentUser: any
@@ -66,12 +63,6 @@ const LoginForm : React.FC<LoginFormProps> = ({currentUser}) => {
   return (
     <>
       <Heading title="Sign in to Sinar Lestari" />
-      <Button
-      outline
-      label="Continue With Google"
-      icon={AiOutlineGoogle}
-      onClick={() => {}}
-      />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="username"
@@ -89,6 +80,7 @@ const LoginForm : React.FC<LoginFormProps> = ({currentUser}) => {
         errors={errors}
         required
         type="password"
+        onKeyDown={handleSubmit(onSubmit)}
       />
       <Button
         label={isLoading ? "Loading" : "Login"}
