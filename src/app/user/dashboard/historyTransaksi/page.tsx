@@ -1,7 +1,5 @@
 import { getSession } from "@/actions/getCurrentUser";
-import Button from "@/components/utils/Button";
 import Heading from "@/components/utils/Heading";
-import { getAccountDetail } from "@/libs/api";
 import Link from "next/link";
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
