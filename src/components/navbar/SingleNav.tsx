@@ -17,7 +17,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Promo",
-    link: "/promo",
+    link: "/product/promo",
   },
   {
     label: "Contact Us",
