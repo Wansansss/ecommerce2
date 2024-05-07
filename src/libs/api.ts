@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 export const getSearchProduct = async (value:any) => {
   const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/search?page=1&limit=10&value=${value}`);
   if (!response.ok) {
@@ -8,7 +10,7 @@ export const getSearchProduct = async (value:any) => {
 };
 
 export const getProductPromo = async (query?:any) =>{
-  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/promo?page=1&limit=10`);
+  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/promo?${query}`);
   if (!response.ok) {
     throw new Error("failed fetch data");
   }
@@ -60,6 +62,21 @@ export const getUserList = async () => {
 
 export const getUserById = async (secureId:any) => {
   const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/users?secureId=${secureId}`)
+  if (!response.ok) {
+    throw new Error("failed fetch data")    
+  }
+  const user = await response.json();
+  return user
+}
+export const getAccountDetail = async (userSecureId?:any) => {
+ 
+  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/users/account/detail`,{
+    method: "GET",
+    headers: {
+      "x-user-secure-id": userSecureId as string,
+      "accept": "*/*"
+    },
+  })
   if (!response.ok) {
     throw new Error("failed fetch data")    
   }
