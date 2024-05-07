@@ -22,7 +22,7 @@ const InputSearch = () => {
   return (
     <div className="relative shadow-sm items-center justify-center">
       <input
-        placeholder="Cari..."
+        placeholder="Cari Product..."
         className="rounded w-full md:w-96 p-1 text-black border border-gray-600"
         ref={searchRef}
         onKeyDown={handleSearch}
