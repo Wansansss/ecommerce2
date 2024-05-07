@@ -9,7 +9,7 @@ import Filter from "@/components/utils/Filter";
 const Page = async ({ params }: any) => {
   const id = params.id;
   const data = await getProduct("/category/list", `categorySecureId=${id}`);
-  const filter = await getProduct("/filter",'')
+  // const filter = await getProduct("/filter",'')
 
   if (data.status !== "OK") {
     return <NotFound title="Product Tidak Ditemukan..." />;
