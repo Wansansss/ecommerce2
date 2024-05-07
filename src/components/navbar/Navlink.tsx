@@ -16,7 +16,7 @@ const Navlink = async () => {
     },
     {
       label: "Promo",
-      link: "/promo",
+      link: "/product/promo",
     },
     {
       label: "Kategori Product",
@@ -62,7 +62,7 @@ const Navlink = async () => {
                 {kategori.data.map((ch:any, index:any) => (
                   <Link
                     key={index}
-                    href={`/kategori/${ch.categorySecureId}`}
+                    href={`/product/kategori/${ch.categorySecureId}`}
                     className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-neutral-400 hover:text-red-600"
                   >
                     <h1 className=" pl-3">{ch.categoryName}</h1>
