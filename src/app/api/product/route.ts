@@ -14,7 +14,7 @@ export async function POST(request: any) {
 
     try {
         const response = await axios.post(
-            'http://89.116.134.204:8011/api/sl/v1/backoffice/product/add',{
+            process.env.NEXT_PUBLIC_API_URL+'/api/sl/v1/backoffice/product/add',{
                 productName,
                 description,
                 amount: parseFloat(amount),
