@@ -11,9 +11,10 @@ interface InputProps {
   register:UseFormRegister<FieldValues>;
   errors: FieldErrors;
   required?: boolean;
+  onKeyDown?:(e:React.KeyboardEvent<HTMLButtonElement>) => void
 }
 
-const input: React.FC<InputProps> = ({
+const Input: React.FC<InputProps> = ({
   id,
   label,
   type,
@@ -21,10 +22,12 @@ const input: React.FC<InputProps> = ({
   register,
   errors,
   required,
+  onKeyDown
 }) => {
   return (
     <div className=" w-full relative">
       <input
+        required
         autoComplete="off"
         id={id}
         disabled={disabled}
@@ -70,4 +73,4 @@ const input: React.FC<InputProps> = ({
   );
 };
 
-export default input;
+export default Input;
