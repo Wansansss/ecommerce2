@@ -26,8 +26,6 @@ export type CartProductType = {
 };
 
 export type SelectedImgType = {
-  color: string;
-  colorCode: string;
   image: string;
 };
 
@@ -43,7 +41,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
     productName: data.productName,
     productDescription: data.productDescription,
     categoryName: data.categoryName,
-    selectedImg: { ...data.fileUrlList },
+    selectedImg: { ...data.selectedImage },
     qty: 1,
     stock: data.totalProductStock,
     amount: data.amount,
@@ -112,6 +110,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
           </h2>
           <h1 className="text-xl font-semibold text-black">
             {formatPrice(data.amount)}
+            
           </h1>
           <div className="flex items-center gap-2">
             <Rating value={data.ratingByClick} readOnly />
