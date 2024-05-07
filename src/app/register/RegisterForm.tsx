@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { SafeUser } from "@/types";
 import { User } from "next-auth";
 
 interface RegisterFormProps {
