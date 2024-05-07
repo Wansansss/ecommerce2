@@ -10,7 +10,7 @@ export async function PUT(request: any) {
   console.log(secureId)
   const body = await request.json()
   console.log(body)
-  const url = "http://89.116.134.204:8011/api/sl/v1/web/users/account"
+  const url = process.env.NEXT_PUBLIC_API_URL +"/api/sl/v1/web/users/account"
 
   try{
     const res = await fetch(url, {
