@@ -1,28 +1,17 @@
-import { useRouter } from "next/navigation";
-
 export const getSearchProduct = async (value:any) => {
-  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/search?page=1&limit=10&value=${value}`);
-  if (!response.ok) {
-    throw new Error("failed fetch data");
-  }
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product/search?page=1&limit=10&value=${value}`);
   const search = await response.json();
   return search;
 };
 
 export const getProductPromo = async (query?:any) =>{
-  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/promo?${query}`);
-  if (!response.ok) {
-    throw new Error("failed fetch data");
-  }
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+ `/api/sl/v1/web/product/promo?${query}`);
   const product = await response.json();
   return product;
 }
 
 export const getProductList = async (query?:any) =>{
-  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/list?productName=${query}`);
-  if (!response.ok) {
-    throw new Error("failed fetch data");
-  }
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+ `/api/sl/v1/web/product/list?productName=${query}`);
   const product = await response.json();
   return product;
 }
@@ -30,14 +19,14 @@ export const getProductList = async (query?:any) =>{
 
 export const getProductDetail = async (productSecureId:any) => {
   const res = await fetch(
-    `http://89.116.134.204:8011/api/sl/v1/web/product?secureId=${productSecureId}`
+    process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product?secureId=${productSecureId}`
   );
   const data = res.json();
   return data;
 };
 
 export const getKategoriList = async () => {
-  const response = await fetch("http://89.116.134.204:8011/api/sl/v1/web/product-category/list")
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/product-category/list")
   if (!response.ok) {
     throw new Error("failed fetch data")    
   }
@@ -46,13 +35,13 @@ export const getKategoriList = async () => {
 };
 
 export const getKategoriDetail = async (query:any) => {
-  const res = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/product/category/list?${query}`);
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/product/category/list?${query}`);
   const data = res.json()
   return data
 };
 
 export const getUserList = async () => {
-  const response = await fetch("http://89.116.134.204:8011/api/sl/v1/web/users/list")
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL +"/api/sl/v1/web/users/list")
   if (!response.ok) {
     throw new Error("failed fetch data")    
   }
@@ -61,7 +50,7 @@ export const getUserList = async () => {
 }
 
 export const getUserById = async (secureId:any) => {
-  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/users?secureId=${secureId}`)
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/users?secureId=${secureId}`)
   if (!response.ok) {
     throw new Error("failed fetch data")    
   }
@@ -69,8 +58,7 @@ export const getUserById = async (secureId:any) => {
   return user
 }
 export const getAccountDetail = async (userSecureId?:any) => {
- 
-  const response = await fetch(`http://89.116.134.204:8011/api/sl/v1/web/users/account/detail`,{
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/users/account/detail`,{
     method: "GET",
     headers: {
       "x-user-secure-id": userSecureId as string,
