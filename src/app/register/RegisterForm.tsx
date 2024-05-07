@@ -71,10 +71,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
   return (
     <>
       <Heading title="Sign Up For Sinar Lestari" />
-      <hr className="bg-red-600 w-full h-2" />
+      <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="fullName"
-        label="fullName"
+        label="Nama Lengkap"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -82,7 +82,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
       />
       <Input
         id="username"
-        label="username"
+        label="Username"
         disabled={isLoading}
         register={register}
         errors={errors}
