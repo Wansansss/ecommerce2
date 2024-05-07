@@ -10,7 +10,6 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { SafeUser } from "@/types";
 import axios from "axios";
 import { headers } from "next/headers";
 import { User } from "next-auth";
