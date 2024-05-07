@@ -10,8 +10,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
-import { AiOutlineGoogle } from "react-icons/ai";
-import { User } from "next-auth";
+
 
 interface RegisterFormProps {
   currentUser: any
