@@ -6,7 +6,7 @@ export async function POST(request:any) {
 
   try {
     const response = await axios.post(
-      'http://89.116.134.204:8011/api/sl/v1/web/users/signup',body);
+      process.env.NEXT_PUBLIC_API_URL +'/api/sl/v1/web/users/signup',body);
     // console.log(response);
     return NextResponse.json(response.data);
   } catch (error:any) {
