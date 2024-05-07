@@ -5,7 +5,6 @@ import {
   FaTiktok,
 } from "react-icons/fa";
 import Link from "next/link";
-import Container from "../utils/Container";
 import { MdEmail } from "react-icons/md";
 import logo from "../../../public/assets/img/logo.png";
 import Image from "next/image";
