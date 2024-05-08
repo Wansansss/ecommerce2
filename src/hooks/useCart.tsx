@@ -25,19 +25,17 @@ interface Props {
   [propName: string]: any;
 }
 
-
-
 export const CartContextProvider = (props: Props) => {
   const [cartTotalQty, setCartTotalQty] = useState(0);
   const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
     null
   );
-  const [cartTotalAmount, setCartTotalAmount] = useState(0)
+  const [cartTotalAmount, setCartTotalAmount] = useState(0);
 
   useEffect(() => {
     const cartItems: any = localStorage.getItem("cart");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
-
+    console.log("🚀 ~ useEffect ~ cProducts:", cProducts);
     setCartProducts(cProducts);
   }, []);
 
@@ -63,19 +61,18 @@ export const CartContextProvider = (props: Props) => {
     getTotals();
   }, [cartProducts]);
 
-  const handleAddProductToCart = async(product: CartProductType) => {
-      setCartProducts((prev) => {
-        let updatedCart
-        if (prev) {
-          updatedCart = [...prev, product];
-        } else {
-          updatedCart = [product];
-        }
-        toast.success("Berhasil Ditambahkan Ke Keranjang");
-        localStorage.setItem("data", JSON.stringify(updatedCart));
-        return updatedCart;
-      });
-    
+  const handleAddProductToCart = async (product: CartProductType) => {
+    setCartProducts((prev) => {
+      let updatedCart;
+      if (prev) {
+        updatedCart = [...prev, product];
+      } else {
+        updatedCart = [product];
+      }
+      toast.success("Berhasil Ditambahkan Ke Keranjang");
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
   const handleRemoveProductFromCart = useCallback(
