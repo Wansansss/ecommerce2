@@ -19,7 +19,7 @@ const Navlink = async () => {
       link: "/product/promo",
     },
     {
-      label: "Kategori Product",
+      label: "Kategori Produk",
       children: [
         {
           label: "Populer",
@@ -36,7 +36,7 @@ const Navlink = async () => {
       ],
     },
     {
-      label: "Contact Us",
+      label: "Kontak Kami",
       link: "/contact",
     },
   ];
