@@ -1,14 +1,15 @@
 import Container from "@/components/utils/Container";
 import CartClient from "./CartClient";
+import { getSession } from "@/actions/getCurrentUser";
 
 const Cart = () => {
-    return ( 
-        <div className="mt-40 mx-8">
-            <Container>
-                <h1><CartClient/></h1>
-            </Container>
-        </div>
-     );
-}
- 
+  return (
+    <Container>
+      <div className="py-32">
+        <CartClient />
+      </div>
+    </Container>
+  );
+};
+
 export default Cart;
