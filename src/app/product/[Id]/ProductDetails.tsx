@@ -41,7 +41,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
     productName: data.productName,
     productDescription: data.productDescription,
     categoryName: data.categoryName,
-    selectedImg: { ...data.selectedImage },
+    selectedImg: { ...data.fileUrlList[0]},
     qty: 1,
     stock: data.totalProductStock,
     amount: data.amount,
