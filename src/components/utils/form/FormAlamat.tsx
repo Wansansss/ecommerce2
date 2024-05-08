@@ -114,6 +114,7 @@ const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
         disabled={isLoading}
         register={register}
         errors={errors}
+        type="number"
         required
       />
 
