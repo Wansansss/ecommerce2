@@ -36,6 +36,9 @@ export const getUserById = async (secureId:any) => {
 }
 export const getAccountDetail = async (userSecureId?:any) => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/users/account/detail`,{
+    next: {
+      revalidate:3600
+    },
     method: "GET",
     headers: {
       "x-user-secure-id": userSecureId as string,
