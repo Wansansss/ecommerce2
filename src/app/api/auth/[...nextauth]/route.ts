@@ -67,6 +67,7 @@ export const authOptions: AuthOptions = {
 
             }
             // console.log("ini user >>>>> ",user);
+            // console.log("ini token >>>",token);
             return token
         }
     },
@@ -79,7 +80,7 @@ export const authOptions: AuthOptions = {
         strategy: "jwt",
 
     },
-    // secret: process.env.NEXTAUTH_SECRET
+    secret: process.env.NEXTAUTH_SECRET
 }
 const handler = NextAuth(authOptions)
 
