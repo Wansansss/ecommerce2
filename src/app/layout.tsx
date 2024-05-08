@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Quattrocento_Sans } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar/Navbar";
 import "slick-carousel/slick/slick.css";
@@ -8,10 +8,10 @@ import Footer from "@/components/footer/Footer";
 import CartProviders from "@/providers/CartProviders";
 import { Toaster } from "react-hot-toast";
 
-const font = Quattrocento_Sans({ subsets: ["latin"], weight: ["400", "700"] });
+const font = Merriweather({ subsets: ["cyrillic"], weight: ["300", "700"] });
 
 export const metadata: Metadata = {
-  title: "Ecommerce",
+  title: "Sinar Lestari",
   description: "Website Ecommerce",
 };
 
