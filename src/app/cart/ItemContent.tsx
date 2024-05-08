@@ -20,8 +20,8 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
   } = useCart();
 
   return (
-    <div className="grid grid-cols-5 text-xs md:text-md sm:space-x-8 gap-4 border-t-[1.5px] border-red-600 items-center">
-      <div className="col-span-2 justify-self-start flex gap-2 md:gap-4 ">
+    <div className="grid grid-cols-5 border-t-[1.5px] border-red-600 items-center">
+      <div className="col-span-1 justify-self-start ">
         <Link href={`/product/${item.productSecureId}`}>
           <div className="relative w-[70px] aspect-square">
             <Image
@@ -32,10 +32,9 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
             />
           </div>
         </Link>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between text-center">
           <Link href={`/product/${item.productSecureId}`}>
             {truncateText(item.productName)}
-            <div>{item.selectedImg.image}</div>
           </Link>
           <div className="w-[70px]">
             <button
@@ -56,7 +55,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           handleQtyIncrease={() => handleCartQtyIncrease(item)}
         />
       </div>
-      <div className="justify-self-end font-bold">
+      <div className="col-span-2 justify-self-end font-bold">
         {formatPrice(item.amount * item.qty)}
       </div>
     </div>
