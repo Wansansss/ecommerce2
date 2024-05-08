@@ -28,10 +28,11 @@ const Kontak = () => {
           animate={viewDiv && "visible"}
           variants={headingAnimation}
         >
-          <h1 className="pt-16 text-4xl font-semibold text-center drop-shadow-md">
+          <h1 className="py-16 text-4xl font-semibold text-center drop-shadow-md">
             Hubungi Kami
+            <hr className="bg-red-600 h-1 max-w-[50%] mx-auto" />
           </h1>
-          <hr className="bg-red-600 h-2" />
+          
         </motion.div>
         <div className="grid grid-cols-1 gap-20 mt-8 md:grid-cols-2 px-4">
           <motion.div
