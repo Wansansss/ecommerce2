@@ -1,5 +1,4 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getAccountDetail } from "@/libs/api";
 import { getServerSession } from "next-auth";
 
 export async function getSession() {
