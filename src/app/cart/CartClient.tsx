@@ -22,18 +22,19 @@ const CartClient = () => {
   const handleCheckout = async () => {
     if (cartProducts) {
       {
-        // cartProducts.map((item) => {
+        cartProducts.map((item) => {
           setIsLoading(true);
           setError(error);
           axios.post("/api/checkout",{
-            cartProducts
+            productSecureId: item.productSecureId,
+            totalItemsPurchased : item.qty
           })
             .then((callback) => {
               setIsLoading(false);
               if (callback?.status === 200) {
                 toast.success("Pesanan Telah diterima")
-                // handleClearCart()
-                // router.push("https://wa.me/6282137026688?text=Hallo Admin,Apakah pesanan saya sudah diterima?")
+                handleClearCart()
+                router.push("https://wa.me/6282137026688?text=Hallo Admin,Apakah pesanan saya sudah diterima?")
               } else {
                 toast.error("Silahkan Login terlebih dahulu");
                 return router.push("/login");
@@ -43,7 +44,7 @@ const CartClient = () => {
               setError(true);
               console.log(error);
               toast.error("Terjadi Kesalahan");
-            // });
+            });
         });
       }
     }
@@ -68,8 +69,9 @@ const CartClient = () => {
 
   return (
     <div>
-      <Heading title="Keranjang Anda" center />
-      <div className="grid grid-cols-5 py-8 border-t-[1.5px] border-red-600 items-center">
+      <Heading title="Keranjang" center />
+      <hr className="h-1 bg-red-600 max-w-[30%] mx-auto" />
+      <div className="grid grid-cols-5 py-8 items-center">
         <div className="col-span-1 justify-start">Produk</div>
         <div className="col-span-1 justify-self-center">Harga</div>
         <div className="col-span-1 justify-self-center">Jumlah</div>
