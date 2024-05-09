@@ -13,9 +13,9 @@ export async function GET(request: Request){
         console.log("FROM >>>>",rangeFromPrice)
         console.log(rangeToPrice)
 
-        const product = await getProduct("/filter",`page=1&limit=10&rangeFrom=${100}&rangeTo=${10000000}`)
+        const product = await getProduct("/filter",`page=1&limit=10&rangeFrom=${rangeFromPrice}&rangeTo=${rangeToPrice}`)
         console.log(product)
-        return NextResponse.json(JSON.stringify(product))
+        return NextResponse.json(product)
     }catch(err){
         console.log(err)
         return NextResponse.error()
