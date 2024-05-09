@@ -10,7 +10,7 @@ import BackDrop from "./BackDrop";
 import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
-  currentUser: any;
+  currentUser?: any;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
