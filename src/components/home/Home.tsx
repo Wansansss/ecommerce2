@@ -5,11 +5,12 @@ import KategoriCard from "../utils/kategori/KategoriCard";
 import Container from "../utils/Container";
 import NotFound from "../utils/NotFound";
 import Heading from "../utils/Heading";
-import Filter from "../../app/product/kategori/filters/Filter";
-import FilterPage from "../../app/product/kategori/filters/page";
+import Filter from "../../app/product/filters/Filter";
+import FilterPage from "../../app/product/filters/page";
+import Link from "next/link";
+import { BsSliders2Vertical } from "react-icons/bs";
 
 const Home = async () => {
-  const rangeFrom = 1000;
   const data = await getProduct("/list");
   const kategori = await getKategoriList();
   if (data.status !== "OK") {
@@ -19,11 +20,19 @@ const Home = async () => {
     <div>
       <Container>
         <Hero />
-
         <div className="py-16">
           <KategoriCard kategori={kategori} />
-          <FilterPage/>
-          <Heading title="Semua Produk" />
+          <div className="flex justify-between px-4">
+            <Heading title="Semua Produk" />
+            <Link
+              href={"product/filters"}
+              className="flex items-center justify-center gap-1"
+            >
+              <Heading title="Filter"  />
+              <BsSliders2Vertical size={20} />
+            </Link>
+          </div>
+
           <hr className="h-1 w-full bg-red-600" />
           <ProductCard list={data} />
         </div>
