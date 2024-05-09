@@ -15,8 +15,8 @@ const Search = async ({ params }: any) => {
   return (
     <div className="py-16">
       <div className="py-16 px-8">
-        <Heading title={"Product"} center />
-        <hr className="w-full h-1 bg-red-700" />
+        <Heading title={"Produk Pilihan"} center />
+        <hr className="w-full h-1 bg-red-700 max-w-[50%] mx-auto" />
         <ProductCard list={searchProduct} />
       </div>
     </div>
