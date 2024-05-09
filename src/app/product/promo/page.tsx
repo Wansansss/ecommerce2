@@ -12,7 +12,7 @@ const Page = async () => {
   return (
     <Container>
       <div className="py-16">
-        <div className="py-16 drop-shadow-md text-center text-4xl font-semibold">
+        <div className="py-16 drop-shadow-lg text-center text-4xl font-semibold">
           <h1>Promo Spesial</h1>
           <hr className="bg-red-600 max-w-[50%] mx-auto h-1" />
         </div>
