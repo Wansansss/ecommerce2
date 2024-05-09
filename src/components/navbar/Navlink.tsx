@@ -36,7 +36,7 @@ const Navlink = async () => {
       ],
     },
     {
-      label: "Kontak Kami",
+      label: "Kontak",
       link: "/contact",
     },
   ];
