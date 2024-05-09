@@ -44,10 +44,18 @@ export const CartContextProvider = (props: Props) => {
       if (cartProducts) {
         const { total, qty } = cartProducts?.reduce(
           (acc, item) => {
-            const itemTotal = item.amount * item.qty;
-            acc.total += itemTotal;
-            acc.qty += item.qty;
+            if(item.amount){
+              const itemTotal = item.amount * item.qty;
+              acc.total += itemTotal;
+              acc.qty += item.qty;
+              
+            } else {
+              const itemTotal = item.amountDiscount * item.qty;
+              acc.total += itemTotal;
+              acc.qty += item.qty;
+            }
             return acc;
+            
           },
           {
             total: 0,
