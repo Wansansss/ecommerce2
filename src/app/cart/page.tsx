@@ -1,6 +1,5 @@
 import Container from "@/components/utils/Container";
 import CartClient from "./CartClient";
-import { getSession } from "@/actions/getCurrentUser";
 
 const Cart = () => {
   return (
