@@ -15,12 +15,12 @@ const Page = async ({ params }: any) => {
   return (
     <Container>
       <div className="py-16">
-            <div className="py-16">
-              <Heading title="Pilihan Produk" center />
-              <hr className="h-1 bg-red-600 max-w-[50%] mx-auto" />
-            </div>
-            <ProductCard list={data} />
-          </div>
+        <div className="py-16 drop-shadow-md text-center text-4xl font-semibold">
+          <h1>Produk Pilihan</h1>
+          <hr className="bg-red-600 max-w-[50%] mx-auto h-1" />
+        </div>
+        <ProductCard list={data} />
+      </div>
     </Container>
   );
 };
