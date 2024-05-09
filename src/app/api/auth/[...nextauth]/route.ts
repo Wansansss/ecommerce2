@@ -42,10 +42,14 @@ export const authOptions: AuthOptions = {
     ],
     callbacks: {
         async session({ session, token }: any) {
-            session.token = token.token
+            session.token = token.data.token
+            console.log(session.token)
+            session.user = token.data
+            console.log(session.user)
             if (session?.token ?? false) {
                 try {
-                    const userDetails = await getUserById(token.userSecureId)
+                    const userDetails = await getUserById(session.user.userSecureId)
+                    console.log(userDetails.data)
                     session.user = userDetails.data
                     session.user.address = userDetails.data.address
                 } catch (error) {
@@ -60,15 +64,15 @@ export const authOptions: AuthOptions = {
             return session
         },
         async jwt({ token, user }: any) {
-            if (user) {
-                token.name = user.data.fullName
-                token.userSecureId = user.data.userSecureId;
-                token.token = user.data.token;
+            // if (user) {
+            //     token.name = user.data.fullName
+            //     token.userSecureId = user.data.userSecureId;
+            //     token.token = user.data.token;
 
-            }
+            // }
             // console.log("ini user >>>>> ",user);
-            // console.log("ini token >>>",token);
-            return token
+            console.log("ini token >>>",token);
+            return {...token,...user}
         }
     },
     pages: {
