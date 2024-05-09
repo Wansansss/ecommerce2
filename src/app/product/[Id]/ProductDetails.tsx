@@ -22,6 +22,7 @@ export type CartProductType = {
   selectedImg: SelectedImgType;
   qty: number;
   stock: number;
+  amountDiscount: number;
   amount: number;
 };
 
@@ -41,9 +42,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
     productName: data.productName,
     productDescription: data.productDescription,
     categoryName: data.categoryName,
-    selectedImg: { ...data.fileUrlList[0]},
+    selectedImg: { ...data.fileUrlList[0] },
     qty: 1,
     stock: data.totalProductStock,
+    amountDiscount: data.amountDiscount,
     amount: data.amount,
   });
   const router = useRouter();
@@ -59,8 +61,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
         setIsProductInCart(true);
       }
     }
-  },[cartProducts])
-    
+  }, [cartProducts]);
 
   const handleSelect = useCallback((value: SelectedImgType) => {
     setCartProduct((prev) => {
@@ -105,16 +106,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
           handleSelect={handleSelect}
         />
         <div className="flex flex-col gap-1 text-slate-500 text-sm">
-          <h2 className="text-3xl font-bold text-black">
-            {data.productName}
-          </h2>
-          <h1 className="text-xl font-semibold text-black">
-            {formatPrice(data.amount)}
-            
-          </h1>
+          <h2 className="text-3xl font-bold text-black">{data.productName}</h2>
+          <div className="flex flex-row gap-2">
+            <h1 className="text-xl font-semibold text-black">
+              {formatPrice(data.amountDiscount)}
+            </h1>
+            <h1 className="line-through text-md font-semibold text-red-600">
+              {formatPrice(data.amount)}
+            </h1>
+            <p className="text-red-600 text-sm">
+              -{data.discount}
+              </p>
+          </div>
+
           <div className="flex items-center gap-2">
             <Rating value={data.ratingByClick} readOnly />
-            <div>{data.totalProductSell} Terjual</div>
           </div>
           <Horizontal />
           <div className="text-justify">{data.productDescription}</div>
