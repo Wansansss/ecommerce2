@@ -1,5 +1,4 @@
 import Container from "@/components/utils/Container";
-import Heading from "@/components/utils/Heading";
 import NotFound from "@/components/utils/NotFound";
 import ProductCard from "@/components/utils/products/ProductCard";
 import { getProduct } from "@/libs/api";
