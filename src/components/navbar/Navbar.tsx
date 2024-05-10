@@ -13,7 +13,7 @@ const Navbar = async () => {
 
   return (
     <Container>
-      <div className="fixed top-0 left-0 right-0 z-10 bg-slate-300 bg-opacity-90">
+      <div className="fixed top-0 left-0 right-0 z-10 bg-rose-100 bg-opacity-90">
         <section className="flex flex-wrap items-center justify-between p-4">
           <Link href={"/"}>
             <Image
