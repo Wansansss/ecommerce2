@@ -6,9 +6,8 @@ export const formatPrice = (amount: number) => {
             notation: 'standard',
             maximumFractionDigits: 0,
             minimumFractionDigits: 0,
-            maximumSignificantDigits: 3,
-            minimumSignificantDigits: 3,
-            useGrouping: true,
+            // maximumSignificantDigits: 3,
+            // minimumSignificantDigits: 3,
         }
     ).format(amount)
 }
