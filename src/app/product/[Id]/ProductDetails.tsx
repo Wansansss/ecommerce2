@@ -111,7 +111,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
             <h1 className="text-xl font-semibold text-black">
               {formatPrice(data.amountDiscount)}
             </h1>
-            <h1 className="line-through text-md font-semibold text-red-600">
+            <h1 className="line-through text-md font-semibold text-gray-500">
               {formatPrice(data.amount)}
             </h1>
             <p className="text-red-600 text-sm">
