@@ -19,7 +19,7 @@ const ProductImages:React.FC<ProductImagesProps> = ({
     return ( 
         <div className="grid grid-cols-6 gap-2 h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
             <div className="flex flex-col items-center justify-center gap-4 cursor-pointer border h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
-                {data.fileUrlList.map((image:SelectedImgType) => {
+                {data.fileUrlList?.map((image:SelectedImgType) => {
                     return <div key={image.image} onClick={() => handleSelect(image)} className={`relative w-[80%] aspect-square border-red-600 ${cartProduct.selectedImg.image === image.image ? 'border-[1.5px]' : 'border-none'}`}>
                         <Image src={image.image} alt="Product" fill className="object-contain"/>
                     </div>
