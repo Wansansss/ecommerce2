@@ -5,8 +5,6 @@ import KategoriCard from "../utils/kategori/KategoriCard";
 import Container from "../utils/Container";
 import NotFound from "../utils/NotFound";
 import Heading from "../utils/Heading";
-import Filter from "../../app/product/filters/Filter";
-import FilterPage from "../../app/product/filters/page";
 import Link from "next/link";
 import { BsSliders2Vertical } from "react-icons/bs";
 
