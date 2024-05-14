@@ -8,7 +8,7 @@ const KategoriCard = ({ kategori }) => {
       <div className="grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 p-8 flex items-center justify-center">
         {kategori.data?.map((kategoricard) => (
           <Link
-            href={`/kategori/${kategoricard.categorySecureId}`}
+            href={`product/kategori/${kategoricard.categorySecureId}`}
             key={kategoricard.categorySecureId}
             className="flex items-center justify-center flex-col border-[1px] rounded shadow-sm shadow-black border-black hover:border-red-600 hover:scale-105 duration-75 transition-all max-h-[300px] max-w-[200px]"
           >
