@@ -1,7 +1,8 @@
+
 export const getProduct = async (resource?:any,query?:any) => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product${resource}?${query}`,{
     next: {
-      revalidate:3600
+      revalidate:10,
     }
   })
   const data = await response.json();
@@ -11,7 +12,9 @@ export const getProduct = async (resource?:any,query?:any) => {
 
 export const getKategoriList = async () => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/product-category/list",{
-    next: {revalidate:3600}
+    next: {
+      revalidate:10
+    }
   })
   const kategori = await response.json();
   return kategori
@@ -19,6 +22,7 @@ export const getKategoriList = async () => {
 
 export const getUserList = async () => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL +"/api/sl/v1/web/users/list")
+
   if (!response.ok) {
     throw new Error("failed fetch data")    
   }
@@ -37,7 +41,7 @@ export const getUserById = async (secureId:any) => {
 export const getAccountDetail = async (userSecureId?:any) => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/users/account/detail`,{
     next: {
-      revalidate:3600
+      revalidate:1
     },
     method: "GET",
     headers: {
