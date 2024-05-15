@@ -10,12 +10,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 
 const CartClient = () => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const {data: session,status} = useSession()
+  let secureId = ''
+    if (session?.user?.secureId)
+        secureId = session.user?.secureId
 
   const router = useRouter();
 
@@ -25,16 +30,25 @@ const CartClient = () => {
         cartProducts.map((item) => {
           setIsLoading(true);
           setError(error);
-          axios.post("/api/checkout",{
-            productSecureId: item.productSecureId,
-            totalItemsPurchased : item.qty
+          fetch(process.env.NEXT_PUBLIC_API_URL + "/api/sl/v1/web/transaction/check-out",{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-user-secure-id": secureId,
+            },
+            body: JSON.stringify({
+              productSecureId: item.productSecureId,
+              totalItemsPurchased: item.qty
+            })
           })
-            .then((callback) => {
-              setIsLoading(false);
-              if (callback?.status === 200) {
+            .then((response) => {
+              setIsLoading(true);
+              if (response.ok) {
                 toast.success("Pesanan Telah diterima")
-                handleClearCart()
-                router.push("https://wa.me/6282137026688?text=Hallo Admin,Apakah pesanan saya sudah diterima?")
+                // handleClearCart()
+                setIsLoading(false)
+                console.log(response)
+                // router.push("https://wa.me/6282137026688?text=Hallo Admin,Apakah pesanan saya sudah diterima?")
               } else {
                 toast.error("Silahkan Login terlebih dahulu");
                 return router.push("/login");
