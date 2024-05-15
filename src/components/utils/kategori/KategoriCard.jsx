@@ -5,15 +5,15 @@ import Container from "../Container";
 const KategoriCard = ({ kategori }) => {
   return (
     <Container>
-      <div className="grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 p-8 flex items-center justify-center">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 p-8 items-center justify-center">
         {kategori.data?.map((kategoricard) => (
           <Link
             href={`product/kategori/${kategoricard.categorySecureId}`}
             key={kategoricard.categorySecureId}
-            className="flex items-center justify-center flex-col border-[1px] rounded shadow-sm shadow-black border-black hover:border-red-600 hover:scale-105 duration-75 transition-all max-h-[300px] max-w-[200px]"
+            className="flex items-center justify-center flex-col border-[1px] rounded shadow-sm shadow-black border-black hover:border-red-600 hover:scale-105 duration-75 transition-all max-h-[300px] max-w-[300px]"
           >
             <Image
-              src="http://89.116.134.204:8011/api/sl/v1/backoffice/uploadfile/files/ac1.jpeg"
+              src={kategoricard.fileUrl[0]}
               alt=""
               width={500}
               height={500}
@@ -21,7 +21,7 @@ const KategoriCard = ({ kategori }) => {
             />
 
             <div className="block h-[50%] p-2 w-full text-white font-semibold bg-red-600/90 hover:text-black/80">
-              <p className="block text-center text-xl">
+              <p className="block text-center text-lg">
                 {kategoricard.categoryName}
               </p>
             </div>
