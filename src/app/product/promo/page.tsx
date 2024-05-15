@@ -4,7 +4,7 @@ import ProductCard from "@/components/utils/products/ProductCard";
 import { getProduct } from "@/libs/api";
 
 const Page = async () => {
-  const productPromo = await getProduct("/promo", `q=10`);
+  const productPromo = await getProduct("/promo");
   console.log(productPromo);
   if (productPromo.status !== "OK") {
     return <NotFound title="Tidak Ada Product Promo...." />;
