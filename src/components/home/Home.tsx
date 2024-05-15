@@ -15,7 +15,7 @@ const Home = async () => {
     return <NotFound title="Data Tidak Ditemukan..." center />;
   }
   return (
-    <div>
+
       <Container>
         <Hero />
         <div className="py-16">
@@ -35,7 +35,6 @@ const Home = async () => {
           <ProductCard list={data} />
         </div>
       </Container>
-    </div>
   );
 };
 
