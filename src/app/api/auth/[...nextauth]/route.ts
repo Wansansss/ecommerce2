@@ -19,7 +19,7 @@ export const authOptions: AuthOptions = {
                     type: 'password',
                 }
             }, async authorize(credentials) {
-                const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/users/signin", {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/sl/v1/web/users/signin", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -41,38 +41,52 @@ export const authOptions: AuthOptions = {
         })
     ],
     callbacks: {
-        async session({ session, token }: any) {
-            session.token = token.data.token
-            console.log(session.token)
-            session.user = token.data
-            console.log(session.user)
-            if (session?.token ?? false) {
-                try {
-                    const userDetails = await getUserById(session.user.userSecureId)
-                    console.log(userDetails.data)
-                    session.user = userDetails.data
-                    session.user.address = userDetails.data.address
-                } catch (error) {
-                    console.log(error)
+        // async session({ session, token }: any) {
+        //     session.token = token.data.token
+        //     console.log(session.token)
+        //     session.user = token.data
+        //     console.log(session.user)
+        //     if (session?.token ?? false) {
+        //         try {
+        //             const userDetails = await getUserById(session.user.userSecureId)
+        //             console.log(userDetails.data)
+        //             session.user = userDetails.data
+        //             session.user.address = userDetails.data.address
+        //         } catch (error) {
+        //             console.log(error)
+        //         }
+
+        //     } 
+        //     if (session?.user.address === undefined || null) {
+        //         const account = await getAccountDetail(token.userSecureId)
+        //         session.user.address = account.data.address
+        //     }
+        //     return session
+        // },
+        async jwt({ session, token, user }: any) {
+            console.log("ini token >>>", token, user, session);
+            if (user) {
+                return {
+                    ...token,
+                    secureId: user.data.userSecureId,
+                    fullName: user.data.fullName
                 }
-               
-            } 
-            if (session?.user.address === undefined || null) {
-                const account = await getAccountDetail(token.userSecureId)
-                session.user.address = account.data.address
+            }
+            return token
+        },
+        async session({ session, token, user }: any) {
+            console.log("ini session >>>", session, token, user);
+            if (token) {
+                return {
+                    ...session,
+                    user: {
+                        ...session.user,
+                        secureId: token.secureId,
+                        fullName: token.fullName,
+                    }
+                }
             }
             return session
-        },
-        async jwt({ token, user }: any) {
-            // if (user) {
-            //     token.name = user.data.fullName
-            //     token.userSecureId = user.data.userSecureId;
-            //     token.token = user.data.token;
-
-            // }
-            // console.log("ini user >>>>> ",user);
-            console.log("ini token >>>",token);
-            return {...token,...user}
         }
     },
     pages: {
@@ -88,4 +102,4 @@ export const authOptions: AuthOptions = {
 }
 const handler = NextAuth(authOptions)
 
-export { handler as GET, handler as POST, handler as PUT}
+export { handler as GET, handler as POST, handler as PUT }
