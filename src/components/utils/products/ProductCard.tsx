@@ -11,10 +11,10 @@ const ProductCard = ({ list }: any) => {
           <Link
             key={data.productSecureId}
             href={`/product/${data.productSecureId}`}
-            className="flex flex-col border hover:border-red-700 bg-rose-100 shadow shadow-black/60 rounded hover:scale-105 duration-300 transition-all w-full"
+            className="flex flex-col border hover:border-red-700 bg-rose-100 shadow shadow-black/60 rounded hover:scale-105 duration-300 transition-all w-[100%]"
           >
             <img
-              className="block items-center justify-center max-h-[200px] min-h-[200px] object-cover"
+              className="block items-center justify-center max-h-[200px] min-h-[200px] object-fill"
               src={data.fileUrlList[0]?.image}
               alt={data.productName}
             />
