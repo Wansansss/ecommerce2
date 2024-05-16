@@ -37,12 +37,12 @@ const Dashboard = async () => {
             </Link>
           )}
         </div>
-        <Link
+        {/* <Link
           href="/user/dashboard/historyTransaksi"
           className="flex flex-row items-center justify-center gap-2"
         >
           <Button custom="max-w-[250px]" label="Histori Transaksi" />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
