@@ -78,8 +78,8 @@ export const CartContextProvider = (props: Props) => {
       } else {
         updatedCart = [product];
       }
-      toast.success("Berhasil Ditambahkan Ke Keranjang");
       localStorage.setItem("cart", JSON.stringify(updatedCart));
+      toast.success("Berhasil Ditambahkan Ke Keranjang");
       return updatedCart;
     });
   };
@@ -91,8 +91,8 @@ export const CartContextProvider = (props: Props) => {
           return item.productSecureId !== product.productSecureId;
         });
         setCartProducts(filteredProducts);
-        toast.success("Berhasil Dihapus Dari Keranjang");
         localStorage.setItem("cart", JSON.stringify(filteredProducts));
+        toast.success("Berhasil Dihapus Dari Keranjang");
       }
     },
     [cartProducts]
