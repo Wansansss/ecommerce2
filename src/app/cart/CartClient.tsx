@@ -101,7 +101,7 @@ const CartClient = () => {
                     icon: <MdDone size={20} />,
                   }
                 );
-              } else if (response.status === 404) {
+              } else if (response.status === 401) {
                 toast.error("Silahkan Login Terlebih Dahulu");
               }
             })
@@ -124,7 +124,7 @@ const CartClient = () => {
         {orderId && (
           <Modal
             open={isModalOpen}
-            // onClose={handleClose}
+            onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
