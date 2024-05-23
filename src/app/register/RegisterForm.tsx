@@ -12,11 +12,9 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 
 
-interface RegisterFormProps {
-  currentUser: any
-}
 
-const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
+
+const RegisterForm = () => {
   const [isLoading, setisLoading] = useState(false);
   const {
     register,
@@ -34,40 +32,25 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
 
   const router = useRouter();
   useEffect(() => {
-    if (currentUser) {
-      router.push("/");
-      router.refresh();
-    }
+    sessionStorage.clear();
   }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setisLoading(true);
-    await axios
-      .post("/api/signup",data)
-      .then(() => {
-    signIn("credentials", {
-      username: data.username,
-      password: data.password,
-      redirect: false,
-    }).then((callback) => {
-      if (callback?.ok) {
+    await axios.post(
+      process.env.NEXT_PUBLIC_API_URL +'/api/sl/v1/web/users/signup',data)
+      .then((response) => {
+        toast.success('Register Berhasil')
+        router.refresh()
         router.push("/login");
-        router.refresh();
-        toast.success("Berhasil Mendaftar");
-      }
-      if (callback?.error) {
-        toast.error(callback.error);
-      }
-    });
-    })
-    .catch(() => toast.error("Gagal Mendaftar"))
+        return response
+      })
+    .catch((response) => {
+      toast.error(`${response.response.data.message}`)})
     .finally(() => {
       setisLoading(false);
     });
   };
-  if (currentUser) {
-    return <p className="text-center">Anda Sudah Login...</p>;
-  }
   return (
     <>
       <Heading title="Sign Up For Sinar Lestari" />
@@ -94,6 +77,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
         disabled={isLoading}
         register={register}
         errors={errors}
+        type="email"
         required
       />
       <Input
