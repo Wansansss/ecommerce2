@@ -9,12 +9,11 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-interface FormAlamatProps {
-  currentUser: any;
-}
 
-const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
+
+const FormAlamat = () => {
   const [isLoading, setisLoading] = useState(false);
+  const [secureId,setSecureId] = useState('');
   const {
     register,
     handleSubmit,
@@ -32,36 +31,38 @@ const FormAlamat: React.FC<FormAlamatProps> = ({ currentUser }) => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (!currentUser) {
-      router.push("/login");
-      router.refresh();
-    }
-  }, []);
+  
+  useEffect(() =>{
+let fullName = sessionStorage.getItem('fullName')
+let secureId = sessionStorage.getItem('secureId')
+if(fullName && secureId){
+  setSecureId(secureId)
+}
+if(!fullName){
+  router.push('/login')
+}
+  },[router])
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setisLoading(true);
+    const config = {
+      headers: {
+        "x-user-secure-id" : secureId,
+        "Content-Type": "application/json"
+      },
+    }
     await axios
-      .put("/api/user", data)
-      .then((callback) => {
-        if (callback.status === 200) {
-          router.push("/user/dashboard");
-          router.refresh();
-          toast.success("Berhasil");
-          setisLoading(false);
-        } else {
-          toast.error("Gagal Update Alamat");
-          setisLoading(false);
-        }
+      .put(process.env.NEXT_PUBLIC_API_URL +"/api/sl/v1/web/users/account", data,config)
+      .then((response) => {
+        toast.success(`Berhasil`)
+        router.push('/user/dashboard')
+    return response
       })
       .catch(() => toast.error("Gagal Update Alamat"))
       .finally(() => {
         setisLoading(false);
       });
   };
-  if (!currentUser) {
-    return <p className="text-center">Silahkan Login Terlebih Dahulu</p>;
-  }
 
   return (
     <>
