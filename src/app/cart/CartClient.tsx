@@ -6,7 +6,7 @@ import Link from "next/link";
 import { MdArrowBack, MdDone } from "react-icons/md";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/libs/formatPrice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
@@ -23,12 +23,16 @@ const CartClient = () => {
   const [loading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [orderId, setOrderId] = useState("");
-  const { data: session, status } = useSession();
-  let secureId = "";
-  if (session?.user?.secureId) secureId = session.user?.secureId;
-
+  const [secureId,setSecureId] = useState('')
   const router = useRouter();
 
+  useEffect(()=> {
+    let secureId = sessionStorage.getItem('secureId');
+    if(secureId){
+      setSecureId(secureId)
+    }
+  },[router])
+ 
   const handleClose = () => setIsModalOpen(false);
 
   const style = {
@@ -101,8 +105,12 @@ const CartClient = () => {
                     icon: <MdDone size={20} />,
                   }
                 );
-              } else if (response.status === 401) {
-                toast.error("Silahkan Login Terlebih Dahulu");
+              } else if (response.status === 404) {
+                const data = await response.json();
+                toast.error(`${data.message}`);
+              } else if (response.status === 500) {
+                const data = await response.json();
+                toast.error(`${data.message}`);
               }
             })
             .catch((error) => {
