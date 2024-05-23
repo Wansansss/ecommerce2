@@ -79,7 +79,6 @@ export const CartContextProvider = (props: Props) => {
         updatedCart = [product];
       }
       localStorage.setItem("cart", JSON.stringify(updatedCart));
-      toast.success("Berhasil Ditambahkan Ke Keranjang");
       return updatedCart;
     });
   };
