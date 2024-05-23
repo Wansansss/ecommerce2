@@ -57,7 +57,6 @@ const Filter = (props: Props) => {
               className="w-[200px] outline-none border-[1px] border-black rounded px-2 text-center py-[2px]" 
               name="rangeFrom"
               onChange={handleMinChange} value={props.price.rangeFrom}
-              
               />
             </div>
           </div>
