@@ -10,8 +10,10 @@ const nextConfig = {
             },
             {
                 hostname: "89.116.134.204"
-            }
-            
+            },
+            {
+                hostname:"api.sinarlestarielektronik.com"
+            },
         ]
     }
 };
