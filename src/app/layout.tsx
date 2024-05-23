@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/footer/Footer";
 import CartProviders from "@/providers/CartProviders";
 import { Toaster } from "react-hot-toast";
-import Provider from "./context/Provider";
 
 const font = Merriweather({ subsets: ["cyrillic"], weight: ["300", "700"] });
 
@@ -34,7 +33,6 @@ export default async function RootLayout({
             },
           }}
         />
-        <Provider>
           <CartProviders>
             <div className="flex flex-col min-h-screen">
               <Navbar />
@@ -42,7 +40,6 @@ export default async function RootLayout({
               <Footer />
             </div>
           </CartProviders>
-        </Provider>
       </body>
     </html>
   );
