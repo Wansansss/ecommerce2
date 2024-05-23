@@ -2,7 +2,7 @@
 export const getProduct = async (resource?:any,query?:any) => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product${resource}?${query}`,{
     next: {
-      revalidate:10,
+      revalidate:1000,
     }
   })
   const data = await response.json();
