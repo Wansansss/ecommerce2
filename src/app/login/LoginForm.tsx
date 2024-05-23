@@ -6,15 +6,13 @@ import Input from "../../components/utils/inputusers/Input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../../components/utils/Button";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import axios from "axios";
 
-interface LoginFormProps{
-  currentUser: any
-}
 
-const LoginForm : React.FC<LoginFormProps> = ({currentUser}) => {
+
+const LoginForm = () => {
   const [isLoading, setisLoading] = useState(false);
   const {
     register,
@@ -29,36 +27,39 @@ const LoginForm : React.FC<LoginFormProps> = ({currentUser}) => {
 
   const router = useRouter();
 
-  useEffect(()=> {
-    if(currentUser){
-      router.push("/");
-      router.refresh();
-    }
-  },[])
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setisLoading(true);
-      signIn("credentials", {
-      ...data,
-        redirect: false,
-      }).then((callback) => {
-        if (callback?.ok) {
-          router.push("/");
-          router.refresh();
-          toast.success("Berhasil Login");
-        }
-        if (callback?.error) {
-          toast.error(callback.error);
-        }
-      }).catch(() => toast.error("Gagal Login"))
-    .finally(() => {
+    const fullName:any = []
+    const userSecureId:any = []
+    const token:any = []
+    axios.post(process.env.NEXT_PUBLIC_API_URL + '/api/sl/v1/web/users/signin', data
+    ).then((response) => {
       setisLoading(false);
-    });
+      if(response.status === 200) {
+        fullName.push(response.data.data.fullName);
+        userSecureId.push(response.data.data.userSecureId);
+        token.push(response.data.data.token);
+        sessionStorage.setItem('fullName',fullName);
+        sessionStorage.setItem('secureId',userSecureId);
+        sessionStorage.setItem('token',token);
+        toast.success("Berhasil Login");
+      }
+    }).catch((error)=>{
+      toast.error("Gagal Login");
+      setisLoading(false);
+      console.log(error)
+    }).finally(()=>{
+      router.push('/')
+      setTimeout(()=>{
+        window.location.reload();
+      },2000)
+    })
+    
   };
-
-  if(currentUser){
-    return <p className="text-center">Anda Sudah Login...</p>
-  }
   return (
     <>
       <Heading title="Sign in to Sinar Lestari" />
