@@ -1,18 +1,13 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client";
 import React, { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import SingleNav from "./SingleNav";
-import { FiMenu } from "react-icons/fi";
-import Link from "next/link";
 import InputSearch from "./InputSearch";
 import CartCount from "./CartCount";
-import MenuItem from "./MenuItem";
-import { signOut } from "next-auth/react";
 import UserMenu from "./UserMenu";
 import { MdClose, MdMenu } from "react-icons/md";
 import BackDrop from "./BackDrop";
-import Navlink from "./Navlink";
+
 
 type NavItem = {
   label: string;
@@ -35,13 +30,10 @@ const navItems: NavItem[] = [
   },
 ];
 
-interface SideBarProps {
-  currentUser: any;
-}
 
-const SideBar: React.FC<SideBarProps> = ({ currentUser }) => {
+
+const SideBar= () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const handleNav = () => {
     setMenuOpen(!menuOpen);
   };
@@ -70,7 +62,7 @@ const SideBar: React.FC<SideBarProps> = ({ currentUser }) => {
       <CartCount />
       </div>
       <div className="px-2 md:hidden xl:hidden">
-      <UserMenu currentUser={currentUser}/>
+      <UserMenu/>
       </div>
       {menuOpen ? <BackDrop onClick={handleNav} /> : null}
     </div>
