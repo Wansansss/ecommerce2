@@ -6,11 +6,8 @@ import Image from "next/image";
 import InputSearch from "./InputSearch";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
-import { getSession } from "@/actions/getCurrentUser";
 
-const Navbar = async () => {
-  const user = await getSession();
-
+const Navbar = () => {
   return (
     <Container>
       <div className="fixed top-0 left-0 right-0 z-10 bg-rose-100 bg-opacity-90">
@@ -25,7 +22,7 @@ const Navbar = async () => {
             />
           </Link>
 
-          <SideBar currentUser={user} />
+          <SideBar />
 
           <div className="hidden md:block md:w-auto">
             <ul className=" flex p-2 md:p-0 md:space-x-6 space-x-0">
@@ -37,7 +34,7 @@ const Navbar = async () => {
               <div className="flex items-center gap-4">
                 <CartCount />
 
-                <UserMenu currentUser={user} />
+                <UserMenu />
               </div>
             </ul>
           </div>
