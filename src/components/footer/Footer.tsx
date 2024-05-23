@@ -138,7 +138,7 @@ const Footer = () => {
         <div className="w-full h-[2px] bg-red-700"></div>
         <div className="flex flex-col items-center justify-center mt-6 md:flex-row text-white font-semibold">
           <p>
-            &copy; Copyright 2022, PT. Sinergi Mandiri Lestari. All Rights
+            &copy; Copyright 2024, PT. Sinergi Mandiri Lestari. All Rights
             Reserved
           </p>
         </div>
