@@ -9,7 +9,6 @@ import { formatPrice } from "@/libs/formatPrice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
 // import Modal from 'react-modal';
 import Box from "@mui/material/Box";
 // import Button from '@mui/material/Button';
@@ -17,22 +16,23 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Image from "next/image";
 import { IoLogoWhatsapp } from "react-icons/io";
+import axios from "axios";
 
 const CartClient = () => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
   const [loading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [orderId, setOrderId] = useState("");
-  const [secureId,setSecureId] = useState('')
+  const [secureId, setSecureId] = useState("");
   const router = useRouter();
 
-  useEffect(()=> {
-    let secureId = sessionStorage.getItem('secureId');
-    if(secureId){
-      setSecureId(secureId)
+  useEffect(() => {
+    let secureId = sessionStorage.getItem("secureId");
+    if (secureId) {
+      setSecureId(secureId);
     }
-  },[router])
- 
+  }, [router]);
+
   const handleClose = () => setIsModalOpen(false);
 
   const style = {
@@ -45,6 +45,27 @@ const CartClient = () => {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
+  };
+
+  const handleInvoice =  async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        userSecureId: secureId,
+      },
+    };
+
+    await axios.get(
+      process.env.NEXT_PUBLIC_API_URL +
+        `/api/sl/v1/web/transaction/invoice/download?orderId=${orderId}`,
+      config
+    ).then((response) => {
+      console.log(response);
+      return response
+    }).catch((error) => {
+      console.log(error);
+      return error
+    })
   };
 
   const handleCheckout = async () => {
@@ -76,6 +97,7 @@ const CartClient = () => {
                 handleClearCart();
                 setIsLoading(false);
                 setOrderId(data.data[0].orderId);
+                localStorage.setItem("orderId", data.data[0].orderId);
               } else if (response.status === 400) {
                 const data = await response.json();
                 toast(
@@ -124,7 +146,6 @@ const CartClient = () => {
       }
     }
   };
-  console.log(orderId);
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -160,14 +181,24 @@ const CartClient = () => {
                     className="font-medium"
                   >
                     <div className="flex">
-                      <IoLogoWhatsapp size={18} className="text-green-600 rounded-xl" />
+                      <IoLogoWhatsapp
+                        size={18}
+                        className="text-green-600 rounded-xl"
+                      />
                       <h1 className="pl-1">0812-9084-4844.</h1>
                     </div>
 
-                    <h2 className="hover:text-red-600 transition-all duration-300">
+                    <h2 className="hover:text-red-600 transition-all duration-300 py-4">
                       Klik Disini
                     </h2>
                   </Link>
+                  <div className="flex justify-center items-center mt-20 mx-auto">
+                      <Button
+                        label="Download Invoice"
+                        small
+                        onClick={() => handleInvoice()}
+                      />
+                    </div>
                 </div>
               </Typography>
             </Box>
