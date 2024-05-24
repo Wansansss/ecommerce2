@@ -29,13 +29,13 @@ const ProductCard = ({ list }: any) => {
               <Rating value={data.ratingByClick} readOnly size="small" />
             </div>
             <div className="font-semibold pl-4 py-4">
-              <h1 className="text-md">{`${formatPrice(data.amountDiscount)}%`}</h1>
+              <h1 className="text-md">{`${formatPrice(data.amountDiscount)}`}</h1>
               <div className="flex flex-row text-wrap">
                 <h1 className="text-xs line-through text-gray-500">
                 {formatPrice(data.amount)}
                 </h1>
                 <h1 className="flex px-1 text-xs text-center text-red-600">
-                 -{data.discount}
+                 -{data.discount}%
                 </h1>
               </div>
             </div>
