@@ -61,7 +61,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
         setIsProductInCart(true);
       }
     }
-  }, [cartProducts,data.productSecureId]);
+  }, [cartProducts, data.productSecureId]);
 
   const handleSelect = useCallback((value: SelectedImgType) => {
     setCartProduct((prev) => {
@@ -114,9 +114,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
             <h1 className="line-through text-md font-semibold text-gray-500">
               {formatPrice(data.amount)}
             </h1>
-            <p className="text-red-600 text-sm">
-              -{data.discount}
-              </p>
+            <p className="text-red-600 text-sm">-{data.discount}%</p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -162,12 +160,28 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
                 handleQtyDecrease={handleQtyDecrease}
               />
               <Horizontal />
-              <div className="max-w-[300px]">
+              {data.totalProductStock ? (
+                <div className="max-w-[300px]">
+                  <Button
+                    label="Tambah Ke Keranjang"
+                    onClick={() => handleAddProductToCart(cartProduct)}
+                  />
+                </div>
+              ) : (
+                <div className="max-w-[300px]">
+                  <Button
+                    label="Tambah Ke Keranjang"
+                    onClick={() => handleAddProductToCart(cartProduct)}
+                    disabled
+                  />
+                </div>
+              )}
+              {/* <div className="max-w-[300px]">
                 <Button
                   label="Tambah Ke Keranjang"
                   onClick={() => handleAddProductToCart(cartProduct)}
                 />
-              </div>
+              </div> */}
             </>
           )}
         </div>
