@@ -30,6 +30,13 @@ const Footer = () => {
           <div className="flex items-center my-1">
             <FaPhoneAlt className="mx-6 text-2xl text-accent"></FaPhoneAlt>
             <div className="flex flex-col py-4">
+            <a
+                href="https://wa.me/6281290844844?text=Hallo Admin,"
+                className="font-medium hover:text-red-600"
+                target="blank"
+              >
+                +62 812-9084-4844
+              </a>
               <a
                 href="https://wa.me/6282137026688?text=Hallo Admin,"
                 className="font-medium hover:text-red-600"
@@ -51,20 +58,14 @@ const Footer = () => {
               >
                 +62 822-5000-1666
               </a>
-              <a
-                href="https://wa.me/6281290844844?text=Hallo Admin,"
-                className="font-medium hover:text-red-600"
-                target="blank"
-              >
-                +62 812-9084-4844
-              </a>
+              
             </div>
           </div>
           <div className="flex items-center py-4">
             <MdEmail className="mx-6 text-2xl text-accent"></MdEmail>
             <a href="mailto:sinergimandirilestari@gmail.com">
               <h3  className="font-medium hover:text-red-600">
-                sinergimandirilestari@gmail.com
+              sinarlestari555@gmail.com
               </h3>
             </a>
           </div>
