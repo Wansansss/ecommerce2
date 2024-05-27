@@ -11,7 +11,7 @@ interface InputProps {
   register:UseFormRegister<FieldValues>;
   errors: FieldErrors;
   required?: boolean;
-  onKeyDown?:(e:React.KeyboardEvent<HTMLButtonElement>) => void
+  value? : string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
   required,
-  onKeyDown
+  value
 }) => {
   return (
     <div className=" w-full relative">
@@ -34,6 +34,7 @@ const Input: React.FC<InputProps> = ({
         {...register(id,{required})}
         placeholder=""
         type={type}
+        value={value}
         className={`
         peer
         w-full
