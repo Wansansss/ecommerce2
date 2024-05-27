@@ -23,7 +23,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
     <div className="grid grid-cols-5 border-t-[1.5px] border-red-600 items-center">
       <div className="col-span-1 justify-self-start ">
         <Link href={`/product/${item.productSecureId}`}>
-          <div className="relative w-[70px] aspect-square">
+          <div className="relative w-[60px] aspect-square">
             <Image
               src={item.selectedImg.image}
               alt={item.productName}
@@ -46,7 +46,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           </div>
         </div>
       </div>
-      {item.amountDiscount ?  <div className="justify-self-center">{formatPrice(item.amountDiscount)}</div>: <div className="justify-self-center">{formatPrice(item.amount)}</div>}
+      {item.amountDiscount ?  <div className="justify-self-center text-xs">{formatPrice(item.amountDiscount)}</div>: <div className="justify-self-center text-xs">{formatPrice(item.amount)}</div>}
      
       <div className="justify-self-center">
         <SetQuantity
