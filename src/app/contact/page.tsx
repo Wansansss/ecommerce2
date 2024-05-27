@@ -70,25 +70,25 @@ const Kontak = () => {
             </div>
             <div className="flex items-center my-6">
               <a
-                href={"https://wa.me/6282227000222?text=Hallo Admin,"}
+                href={"https://wa.me/6281290844844?text=Hallo Admin,"}
                 target="blank"
               >
                 <FaPhoneAlt className="mr-8 text-2xl duration-300 cursor-pointer hover:text-red-700" />
               </a>
               <a
-                href={"https://wa.me/6282227000222?text=Hallo Admin,"}
+                href={"https://wa.me/6281290844844?text=Hallo Admin,"}
                 target="blank"
               >
                 <h3 className="font-medium">
-                  +62 822-2700-0222
+                  +62 812-9084-4844
                 </h3>
               </a>
             </div>
             <div className="flex items-center my-6">
               <MdEmail className="mr-8 text-2xl duration-300 cursor-pointer hover:text-red-700"></MdEmail>
-              <a href="mailto:sinergimandirilestari@gmail.com">
+              <a href="mailto:sinarlestari555@gmail.com">
                 <h3 className="font-medium">
-                  sinergimandirilestari@gmail.com
+                sinarlestari555@gmail.com
                 </h3>
               </a>
             </div>
