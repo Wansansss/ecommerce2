@@ -127,6 +127,7 @@ const CartClient = () => {
                     icon: <MdDone size={20} />,
                   }
                 );
+                handleClearCart();
               } else if (response.status === 404) {
                 const data = await response.json();
                 toast.error(`${data.message}`);
