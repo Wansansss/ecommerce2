@@ -70,7 +70,7 @@ const SideBar = () => {
       });
   }
   useEffect(getKategori, []);
-  console.log(kategori)
+
 
   return (
     <div className="flex flex-row items-center justify-center px-4">
