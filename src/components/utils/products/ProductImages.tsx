@@ -26,7 +26,7 @@ const ProductImages:React.FC<ProductImagesProps> = ({
                 })}
             </div>
             <div className="col-span-5 relative aspect-square">
-                <Image fill src={cartProduct.selectedImg.image} alt="Product" className="w-full h-full object-contain max-h-[500px] min-h-[300px] sm:min-h-[400px]"/>
+                <Image width={1920} height={1080} fill src={cartProduct.selectedImg.image} alt="Product" className="w-full h-full object-contain max-h-[500px] min-h-[300px] sm:min-h-[400px]"/>
             </div>
         </div>
      );
