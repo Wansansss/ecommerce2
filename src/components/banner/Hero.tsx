@@ -1,9 +1,10 @@
 "use client"
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Slide from "./Slide";
 import Container from "../utils/Container";
+import axios from "axios";
 
 const Hero = () => {
   var settings:any = {
@@ -15,44 +16,31 @@ const Hero = () => {
     pauseOnHover: false,
     arrows:false,
   };
+  const [banner,setBanner] = useState<any>([''])
 
-  const slideData = [
-    {
-      id: 0,
-      img: "/assets/img/banner-1.jpg",
-      title: "Trending Item",
-      mainTitle: "SUMMER SALE! GET 50% OFF",
-      price: "Rp 200.000",
-      priority: true
-    },
-    {
-      id: 1,
-      img: "/assets/img/banner-2.jpg",
-      title: "Trending Accessories",
-      mainTitle: "MODERN ACCESSORIES",
-      price: "Rp 350.000",
-    },
-    {
-      id: 2,
-      img: "/assets/img/banner-03.jpg",
-      title: "Sale Offer",
-      mainTitle: "NEW FASHION SUMMER SALE",
-      price: "Rp.270.000",
-    },
-  ];
+  function getBanner(){
+       axios.get(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/backoffice/banner/list`)
+      .then((response) =>{
+        // console.log(response)
+        setBanner(response.data.data)
+      }).catch((err) =>{console.log(err)});
+    }
+     useEffect(getBanner,[])
+    //  console.log(banner)
 
   return (
+
     <div>
         <Container>
         <div className="pt-28">
         <Slider {...settings}>
-          {slideData.map((item) => (
+          {banner?.map((item:any) => (
             <Slide
-              key={item.id}
-              img={item.img}
-              title={item.title}
-              mainTitle={item.mainTitle}
-              price={item.price}
+              key={item.secureId}
+              img={item.fileUrl}
+              title={item.fileName}
+              // mainTitle={item.mainTitle}
+              // price={item.price}
             />
           ))}
         </Slider>
