@@ -16,7 +16,7 @@ const Slide: React.FC<propsType> = ({ img, title }) => {
     <Container>
       <div className="outline-none border-none relative md:max-h-[300px] sm:max-h-[200px] lg:max-h-[300px]">
         <div className="absolute max-h-[200px] left-[30px] md:left-[70px] max-w-[250px] sm:max-w-[350px] gap-2">
-          {/* <h3 className="text-black/80 text-[20px] lg:text-[24px]">{title}</h3> */}
+          <h3 className="text-black/80 text-[20px] lg:text-[24px]">{title}</h3>
           <h2 className="text-black text-[16px] md:text-[26px] lg:text-[40px] font-bold leading-[1.2] pb-4">
             {title}
           </h2>
@@ -27,7 +27,7 @@ const Slide: React.FC<propsType> = ({ img, title }) => {
             {/* .00 */}
           </h3>
           <Link href={"/product/promo"} className="bg-red-700 text-black text-[10px] md:text-[16px] p-1 px-2 rounded-lg inline-block cursor-pointer hover:bg-black hover:text-white transition-all duration-500">
-            Shop Now
+            Beli Sekarang {">"}
           </Link>
         </div>
 
