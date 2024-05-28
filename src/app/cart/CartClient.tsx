@@ -134,7 +134,7 @@ const CartClient = () => {
                 router.push('user/dashboard')
               } else if (response.status === 500) {
                 const data = await response.json();
-                toast.error(`${data.message}`);
+                // toast.error(`${data.message}`);
               }
             })
             .catch((error) => {
