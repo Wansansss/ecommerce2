@@ -7,6 +7,7 @@ import ProductCard from "@/components/utils/products/ProductCard";
 import Heading from "@/components/utils/Heading";
 import Button from "@/components/utils/Button";
 import toast from "react-hot-toast";
+import CurrencyInput from "react-currency-input-field";
 
 
 const FilterPage = () => {
@@ -46,13 +47,21 @@ const FilterPage = () => {
                   Dari
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1">Rp</span>
+                  {/* <span className="absolute left-3 top-1">Rp</span>
                   <input
                     type="number"
                     className="w-[200px] outline-none border-[1px] border-black rounded px-2 text-center py-[2px]"
                     name="rangeFrom"
                     onChange={(e) => setMinPrice(e.target.value)}
-                  />
+                  /> */}
+                  <CurrencyInput
+                  className="form-control"
+                  placeholder="Harga"
+                  prefix="Rp."
+                  defaultValue={0}
+                  decimalsLimit={2}
+                  onValueChange={(value, name, values) => setMinPrice(value)}
+                />
                 </div>
               </div>
             </div>
@@ -62,13 +71,14 @@ const FilterPage = () => {
                   Sampai
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1">Rp</span>
-                  <input
-                    type="number"
-                    className="w-[200px] outline-none border-[1px] border-black rounded px-2 text-center py-[2px]"
-                    name="rangeTo"
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                  />
+                <CurrencyInput
+                  className="form-control"
+                  placeholder="Harga"
+                  prefix="Rp."
+                  defaultValue={0}
+                  decimalsLimit={2}
+                  onValueChange={(value, name, values) => setMaxPrice(value)}
+                />
                 </div>
               </div>
             </div>
