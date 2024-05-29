@@ -32,7 +32,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
             />
           </div>
         </Link>
-        <div className="flex flex-col justify-between text-center">
+        <div className="flex flex-col justify-between text-sm">
           <Link href={`/product/${item.productSecureId}`}>
             {truncateText(item.productName)}
           </Link>
