@@ -10,6 +10,7 @@ import { BsSliders2Vertical } from "react-icons/bs";
 
 const Home = async () => {
   const data = await getProduct("/list");
+  console.log(data)
   const kategori = await getKategoriList();
   if (data.status !== "OK") {
     return <NotFound title="Data Tidak Ditemukan..." center />;
