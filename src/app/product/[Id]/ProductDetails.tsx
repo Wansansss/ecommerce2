@@ -107,18 +107,26 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
         />
         <div className="flex flex-col gap-1 text-slate-500 text-sm">
           <h2 className="text-3xl font-bold text-black">{data.productName}</h2>
-          <div className="flex flex-row gap-2">
-            <h1 className="text-xl font-semibold text-black">
-              {formatPrice(data.amountDiscount)}
-            </h1>
-            <h1 className="line-through text-md font-semibold text-gray-500">
-              {formatPrice(data.amount)}
-            </h1>
-            <p className="text-red-600 text-sm">-{data.discount}%</p>
-          </div>
+          {data.discount === 0 ? (
+            <div className="flex flex-row gap-2">
+              <h1 className="text-xl font-semibold text-black">
+                {formatPrice(data.amount)}
+              </h1>
+            </div>
+          ) : (
+            <div className="flex flex-row gap-2">
+              <h1 className="text-xl font-semibold text-black">
+                {formatPrice(data.amountDiscount)}
+              </h1>
 
+              <h1 className="line-through text-md font-semibold text-gray-500">
+                {formatPrice(data.amount)}
+              </h1>
+              <p className="text-red-600 text-sm">-{data.discount}%</p>
+            </div>
+          )}
           <div className="flex items-center gap-2">
-            <Rating value={data.ratingByClick} readOnly />
+            <Rating value={data.ratingByClick} readOnly/>
           </div>
           <Horizontal />
           <div className="text-justify">{data.productDescription}</div>
