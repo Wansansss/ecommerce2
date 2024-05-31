@@ -97,6 +97,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
     });
   }, [cartProduct]);
 
+const text = data.productDescription;
+
+const lines = text.split('\n');
+const listItems = lines.map((line:any, index:any) => (
+  <li key={index} className="py-1">{line}</li>
+));
+
+const list = <ul className="list-none">{listItems}</ul>;
+
   return (
     <Container>
       <div className="h-full pt-44 pb-12 px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -105,7 +114,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
           data={data}
           handleSelect={handleSelect}
         />
-        <div className="flex flex-col gap-1 text-slate-500 text-sm">
+        <div className="flex flex-col gap-1 text-black text-sm">
           <h2 className="text-3xl font-bold text-black">{data.productName}</h2>
           {data.discount === 0 ? (
             <div className="flex flex-row gap-2">
@@ -129,7 +138,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
             <Rating value={data.ratingByClick} readOnly/>
           </div>
           <Horizontal />
-          <div className="text-justify">{data.productDescription}</div>
+          <div className="text-justify">{list}</div>
           <Horizontal />
           <div>
             <span className="font-bold">CATEGORY: </span>
