@@ -7,7 +7,7 @@ import ProductDetails from "./ProductDetails";
 const Page = async ({params}:any) => {
   const id= params.Id
   const product = await getProduct("",`secureId=${id}`)
-  console.log(product)
+  // console.log(product)
   if(product.status !== "OK") {
     return(
       <NotFound title="Product Tidak Ditemukan..."/>
