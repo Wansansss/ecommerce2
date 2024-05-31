@@ -2,7 +2,7 @@
 export const getProduct = async (resource?:any,query?:any) => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL +`/api/sl/v1/web/product${resource}?${query}`,{
     next: {
-      revalidate:1000,
+      revalidate:1,
     }
   })
   const data = await response.json();
@@ -13,7 +13,7 @@ export const getProduct = async (resource?:any,query?:any) => {
 export const getKategoriList = async () => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/sl/v1/web/product-category/list",{
     next: {
-      revalidate:10
+      revalidate:1
     }
   })
   const kategori = await response.json();
