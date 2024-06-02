@@ -201,11 +201,12 @@ const CartClient = () => {
                     </h2>
                   </Link>
                   <div className="flex justify-center items-center mt-20 mx-auto">
+                    <Link href={"/user/dashboard/historyTransaksi"}>
                     <Button
                       label="Download Invoice"
                       small
-                      onClick={handleInvoice}
                     />
+                    </Link>
                   </div>
                 </div>
               </Typography>
