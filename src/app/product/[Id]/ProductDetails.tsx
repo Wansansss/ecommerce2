@@ -114,21 +114,21 @@ const list = <ul className="list-none">{listItems}</ul>;
           data={data}
           handleSelect={handleSelect}
         />
-        <div className="flex flex-col gap-1 text-black text-sm">
-          <h2 className="text-3xl font-bold text-black">{data.productName}</h2>
+        <div className="flex flex-col gap-1 text-black">
+          <h2 className="text-3xl font-extrabold text-black">{data.productName}</h2>
           {data.discount === 0 ? (
             <div className="flex flex-row gap-2">
-              <h1 className="text-xl font-semibold text-black">
+              <h1 className="text-xl font-bold text-black">
                 {formatPrice(data.amount)}
               </h1>
             </div>
           ) : (
             <div className="flex flex-row gap-2">
-              <h1 className="text-xl font-semibold text-black">
+              <h1 className="text-xl font-bold text-black">
                 {formatPrice(data.amountDiscount)}
               </h1>
 
-              <h1 className="line-through text-md font-semibold text-gray-500">
+              <h1 className="line-through text-md font-bold text-gray-500">
                 {formatPrice(data.amount)}
               </h1>
               <p className="text-red-600 text-sm">-{data.discount}%</p>
@@ -138,7 +138,7 @@ const list = <ul className="list-none">{listItems}</ul>;
             <Rating value={data.ratingByClick} readOnly/>
           </div>
           <Horizontal />
-          <div className="text-justify">{list}</div>
+          <div className="text-justify text-black font-normal">{list}</div>
           <Horizontal />
           <div>
             <span className="font-bold">CATEGORY: </span>
