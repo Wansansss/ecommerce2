@@ -138,7 +138,7 @@ const History = () => {
       })}
           <Link
           href="/user/dashboard"
-          className="flex flex-row items-center justify-center gap-2"
+          className="flex flex-row items-center justify-center gap-2 py-2"
         >
           <IoMdArrowRoundBack />
           <h1 className="font-bold text-lg">Back</h1>
