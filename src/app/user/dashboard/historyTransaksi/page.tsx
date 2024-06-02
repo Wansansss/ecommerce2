@@ -175,8 +175,8 @@ const History = () => {
       )}
       {transaksi === undefined && (
         <>
-          <Heading title="HISTORY TRANSAKSI" center />
-          <div className="flex text-center justify-center">
+          
+          <div className="flex text-center py-4 justify-center">
             Tidak Ada Transaksi
           </div>
         </>
