@@ -25,6 +25,7 @@ const RegisterForm = () => {
       fullName: "",
       username: "",
       email: "",
+      noHp:"",
       password: "",
       role:["USER"],
     },
@@ -66,6 +67,14 @@ const RegisterForm = () => {
       <Input
         id="username"
         label="Username"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="noHandphone"
+        label="No Handphone"
         disabled={isLoading}
         register={register}
         errors={errors}
