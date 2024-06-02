@@ -12,36 +12,55 @@ import axios from "axios";
 
 
 const FormAlamat = () => {
+  const [currentUser,setCurrentUser] = useState<any>([''])
   const [isLoading, setisLoading] = useState(false);
   const [secureId,setSecureId] = useState('');
+  const router = useRouter();
+  useEffect(() =>{
+    let fullName = sessionStorage.getItem('fullName')
+    let secureId = sessionStorage.getItem('secureId')
+    if(fullName && secureId){
+      setSecureId(secureId)
+    }
+    if(!fullName){
+      router.push('/login')
+    }
+      },[router])
+
+  function getAccountDetail(){
+    const config = {
+      headers: {
+        "x-user-secure-id": secureId as string,
+        "accept": "*/*"
+      },
+    }
+       axios.get(process.env.NEXT_PUBLIC_API_URL+`/api/sl/v1/web/users/account/detail`,config)
+      .then((response) =>{
+        console.log(response)
+        setCurrentUser(response.data.data)
+      }).catch((err) =>{console.log(err)});
+    }
+     useEffect(getAccountDetail,[secureId])
+     console.log(currentUser)
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
-    defaultValues: {
-      address: " ",
-      city: " ",
-      village: " ",
-      subDistrict: " ",
-      postalCode: " ",
-      province: "",
+    values: {
+      phoneNumber:currentUser?.phoneNumber,
+      address:currentUser?.address?.address1,
+      city: currentUser?.address?.city,
+      village: currentUser?.address?.village,
+      subDistrict:currentUser?.address?.subdistrict ,
+      postalCode: currentUser?.address?.postalCode,
+      province: currentUser?.address?.province,
     },
   });
 
-  const router = useRouter();
-
   
-  useEffect(() =>{
-let fullName = sessionStorage.getItem('fullName')
-let secureId = sessionStorage.getItem('secureId')
-if(fullName && secureId){
-  setSecureId(secureId)
-}
-if(!fullName){
-  router.push('/login')
-}
-  },[router])
+
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setisLoading(true);
@@ -69,12 +88,20 @@ if(!fullName){
       <Heading title="Lengkapi Alamat" />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
+        id="phoneNumber"
+        label="No Handphone"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        value={currentUser?.phoneNumber}
+      />
+      <Input
         id="address"
         label="Nama Jalan"
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
+        value={currentUser?.address?.address1}
       />
 
       <Input
@@ -83,7 +110,7 @@ if(!fullName){
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
+        value={currentUser?.address?.village}
       />
       <Input
         id="subDistrict"
@@ -91,7 +118,7 @@ if(!fullName){
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
+        value={currentUser?.address?.subdistrict}
       />
       <Input
         id="city"
@@ -99,7 +126,7 @@ if(!fullName){
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
+        value={currentUser?.address?.city}
       />
       <Input
         id="province"
@@ -107,7 +134,7 @@ if(!fullName){
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
+        value={currentUser?.address?.province}
       />
       <Input
         id="postalCode"
@@ -115,8 +142,8 @@ if(!fullName){
         disabled={isLoading}
         register={register}
         errors={errors}
+        value={currentUser?.address?.postalCode}
         type="number"
-        required
       />
 
       <Button
