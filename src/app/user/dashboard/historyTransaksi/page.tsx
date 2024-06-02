@@ -155,6 +155,7 @@ const History = () => {
                     <div className="grid grid-cols-1 gap-4 break-all">
                       <h1>orderId: {data.orderId}</h1>
                       <h1>Nama Produk: {data.productName} </h1>
+                      <h1>Jumlah Produk: {data.qty}</h1>
                       <h1>Kategori: {data.categoryName} </h1>
                       <h1>Harga: {formatPrice(data.paymentAmount)} </h1>
                       <h1>Status Pembayaran: {data.statusPayment} </h1>
