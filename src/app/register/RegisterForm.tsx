@@ -25,7 +25,7 @@ const RegisterForm = () => {
       fullName: "",
       username: "",
       email: "",
-      noHp:"",
+      phoneNumber:"",
       password: "",
       role:["USER"],
     },
@@ -73,7 +73,7 @@ const RegisterForm = () => {
         required
       />
       <Input
-        id="noHandphone"
+        id="phoneNumber"
         label="No Handphone"
         disabled={isLoading}
         register={register}
