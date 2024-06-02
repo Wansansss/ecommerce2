@@ -46,8 +46,16 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           </div>
         </div>
       </div>
-      {item.amountDiscount ?  <div className="justify-self-center text-xs">{formatPrice(item.amountDiscount)}</div>: <div className="justify-self-center text-xs">{formatPrice(item.amount)}</div>}
-     
+      {item.amountDiscount ? (
+        <div className="justify-self-center text-xs">
+          {formatPrice(item.amountDiscount)}
+        </div>
+      ) : (
+        <div className="justify-self-center text-xs">
+          {formatPrice(item.amount)}
+        </div>
+      )}
+
       <div className="justify-self-center">
         <SetQuantity
           cartCounter={true}
@@ -56,12 +64,15 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           handleQtyIncrease={() => handleCartQtyIncrease(item)}
         />
       </div>
-      {item.amountDiscount ?  <div className="col-span-2 justify-self-end font-bold">
-        {formatPrice(item.amountDiscount * item.qty)}
-      </div> : <div className="col-span-2 justify-self-end font-bold">
-        {formatPrice(item.amount * item.qty)}
-      </div>}
-     
+      {item.amountDiscount ? (
+        <div className="col-span-2 justify-self-end font-bold">
+          {formatPrice(item.amountDiscount * item.qty)}
+        </div>
+      ) : (
+        <div className="col-span-2 justify-self-end font-bold">
+          {formatPrice(item.amount * item.qty)}
+        </div>
+      )}
     </div>
   );
 };
