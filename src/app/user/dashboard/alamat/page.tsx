@@ -55,6 +55,7 @@ const UserCard = () => {
           <Heading title="ALAMAT PENGIRIMAN" />
           <div className="w-full font-semibold">
             <div className="grid grid-cols-1 gap-4 break-all">
+              <h1>No Handphone: {currentUser?.phoneNumber}</h1>
               <h1>
                 Alamat: {currentUser?.address?.address1}
               </h1>
