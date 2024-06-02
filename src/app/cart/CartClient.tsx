@@ -47,25 +47,35 @@ const CartClient = () => {
     p: 4,
   };
 
-  const handleInvoice =  async () => {
+  const handleInvoice = async () => {
     const config = {
+      encoding: 'binary',
       headers: {
-        "Content-Type": "application/json",
         userSecureId: secureId,
+        responseType: 'blob'
       },
     };
 
-    await axios.get(
-      process.env.NEXT_PUBLIC_API_URL +
-        `/api/sl/v1/web/transaction/invoice/download?orderId=${orderId}`,
-      config
-    ).then((response) => {
-      console.log(response);
-      return response
-    }).catch((error) => {
-      console.log(error);
-      return error
-    })
+    await axios
+      .get(
+        process.env.NEXT_PUBLIC_API_URL +
+          `/api/sl/v1/web/transaction/invoice/download?orderId=${orderId}`,
+        config
+      )
+      .then((response) => {
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download
+        link.click();
+        URL.revokeObjectURL(url);
+        // return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
   };
 
   const handleCheckout = async () => {
@@ -131,11 +141,11 @@ const CartClient = () => {
               } else if (response.status === 404) {
                 const data = await response.json();
                 toast.error(`${data.message}`);
-                router.push('/login')
+                router.push("/login");
               } else if (response.status === 500) {
                 const data = await response.json();
                 toast.error(`${data.message}`);
-                router.push('user/dashboard')
+                router.push("user/dashboard");
               }
             })
             .catch((error) => {
@@ -196,12 +206,12 @@ const CartClient = () => {
                     </h2>
                   </Link>
                   <div className="flex justify-center items-center mt-20 mx-auto">
-                      <Button
-                        label="Download Invoice"
-                        small
-                        onClick={() => handleInvoice()}
-                      />
-                    </div>
+                    <Button
+                      label="Download Invoice"
+                      small
+                      onClick={handleInvoice}
+                    />
+                  </div>
                 </div>
               </Typography>
             </Box>
