@@ -30,7 +30,7 @@ const UserMenu= () => {
   function getAccountDetail(){
     const config = {
       headers: {
-        "x-user-secure-id": secureId as string,
+        "x-user-secure-id": secureId,
         "accept": "*/*"
       },
     }
