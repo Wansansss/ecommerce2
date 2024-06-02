@@ -49,27 +49,22 @@ const CartClient = () => {
 
   const handleInvoice = async () => {
     const config = {
-      encoding: 'binary',
+      responseType:'arraybuffer' as any,
       headers: {
         userSecureId: secureId,
-        responseType: 'blob'
       },
     };
 
     await axios
-      .get(
-        process.env.NEXT_PUBLIC_API_URL +
-          `/api/sl/v1/web/transaction/invoice/download?orderId=${orderId}`,
-        config
-      )
+      .get(process.env.NEXT_PUBLIC_API_URL + `/api/sl/v1/web/transaction/invoice/download?orderId=${orderId}`,config)
       .then((response) => {
-        const blob = new Blob([response.data], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
+       const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a');
         link.href = url;
-        link.download
+        link.setAttribute('download',`invoice_order_${orderId}.pdf`)
+        document.body.appendChild(link);
         link.click();
-        URL.revokeObjectURL(url);
+        // URL.revokeObjectURL(url);
         // return response;
       })
       .catch((error) => {
