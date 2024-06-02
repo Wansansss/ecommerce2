@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev -p 3001",
+    "build": "next build -p 3001",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,6 +22,7 @@
     "cookie": "^0.6.0",
     "cors": "^2.8.5",
     "framer-motion": "^11.1.7",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "next": "^14.2.3",
     "next-auth": "^4.24.7",
