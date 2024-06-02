@@ -10,6 +10,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Container from "@/components/utils/Container";
 import FormWrap from "@/components/utils/FormWrap";
+import { formatPrice } from "@/libs/formatPrice";
 
 const History = () => {
   const [fullName, setfullName] = useState("");
@@ -121,7 +122,7 @@ const History = () => {
               <h1>orderId: {data.orderId}</h1>
               <h1>Nama Produk: {data.productName} </h1>
               <h1>Kategori: {data.categoryName} </h1>
-              <h1>Harga: {data.paymentAmount} </h1>
+              <h1>Harga: {formatPrice(data.paymentAmount)} </h1>
               <h1>Status Pembayaran: {data.statusPayment} </h1>
               <h1>Status: {data.statusOrder} </h1>
               <Button
