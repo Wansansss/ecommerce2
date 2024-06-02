@@ -59,7 +59,7 @@ const Dashboard = () => {
             </Link>
           ) : (
             <Link href="/user/dashboard/alamat">
-              <Button custom="max-w-[250px]" label={"Edit Alamat"} />
+              <Button custom="max-w-[250px]" label={"Alamat Pengiriman"} />
             </Link>
           )}
         </div>
