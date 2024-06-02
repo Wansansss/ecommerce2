@@ -15,7 +15,7 @@ import { formatPrice } from "@/libs/formatPrice";
 const History = () => {
   const [fullName, setfullName] = useState("");
   const [secureId, setSecureId] = useState("");
-  const [transaksi, setTransaksi] = useState<any>([""]);
+  const [transaksi, setTransaksi] = useState<any>();
   const [orderId, setOrderId] = useState("");
   const router = useRouter();
 
@@ -81,7 +81,7 @@ const History = () => {
         // return response;
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         return error;
       });
   };
@@ -144,7 +144,7 @@ const History = () => {
           Welcome,{fullName}
         </div>
       </div>
-      {transaksi !== "" ? (
+      {transaksi !== undefined && (
         <>
           {transaksi?.map((data: any, index: any) => {
             return (
@@ -172,7 +172,8 @@ const History = () => {
             );
           })}
         </>
-      ) : (
+      )}
+      {transaksi === undefined && (
         <>
           <Heading title="HISTORY TRANSAKSI" center />
           <div className="flex text-center justify-center">
