@@ -15,12 +15,15 @@ import { formatPrice } from "@/libs/formatPrice";
 const History = () => {
   const [fullName, setfullName] = useState("");
   const [secureId, setSecureId] = useState("");
-  const [history, setHistory] = useState<any>(['']);
+  const [transaksi, setTransaksi] = useState<any>(['']);
+  const [orderId, setOrderId] = useState('')
   const router = useRouter();
 
   useEffect(() => {
     let fullName: any = sessionStorage.getItem("fullName");
     let secureId: any = sessionStorage.getItem("secureId");
+    let orderId: any = localStorage.getItem("orderId");
+    setOrderId(orderId);
     setfullName(fullName);
     setSecureId(secureId);
     if (!fullName) {
@@ -43,7 +46,7 @@ const History = () => {
       )
       .then((response) => {
         // transaksi = response.data.data
-        setHistory(response.data.data);
+        setTransaksi(response.data.data);
         // return transaksi
       })
       .catch((response) => {
@@ -52,7 +55,32 @@ const History = () => {
       });
   }
   useEffect(getHistory, [secureId]);
-  // console.log(transaksi);
+  console.log(transaksi);
+  const handleInvoice = async () => {
+    const config = {
+      responseType:'arraybuffer' as any,
+      headers: {
+        userSecureId: secureId,
+      },
+    };
+
+    await axios
+      .get(process.env.NEXT_PUBLIC_API_URL + `/api/sl/v1/web/transaction/invoice/download?orderId=${orderId}`,config)
+      .then((response) => {
+       const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download',`invoice_order_${orderId}.pdf`)
+        document.body.appendChild(link);
+        link.click();
+        // URL.revokeObjectURL(url);
+        // return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+  };
 
   return (
     // <div className="py-16">
@@ -112,7 +140,7 @@ const History = () => {
             Welcome,{fullName}
           </div>
         </div>
-      {history?.map((data:any,index:any)=>{
+      {transaksi?.map((data:any,index:any)=>{
         return(
           <div key={index} className="w-full">
         <FormWrap>
@@ -128,7 +156,7 @@ const History = () => {
               <Button
                       label="Download Invoice"
                       small
-                      // onClick={handleInvoice}
+                      onClick={handleInvoice}
                     />
             </div>
           </div>
