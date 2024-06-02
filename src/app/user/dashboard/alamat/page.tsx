@@ -52,7 +52,7 @@ const UserCard = () => {
           </div>
         </div>
         <FormWrap>
-          <Heading title="ALAMAT ANDA" />
+          <Heading title="ALAMAT PENGIRIMAN" />
           <div className="w-full font-semibold">
             <div className="grid grid-cols-1 gap-4 break-all">
               <h1>
