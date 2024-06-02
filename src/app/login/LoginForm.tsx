@@ -48,10 +48,9 @@ const LoginForm = () => {
         sessionStorage.setItem('token',token);
         toast.success("Berhasil Login");
       }
-    }).catch((error)=>{
-      toast.error("Gagal Login");
+    }).catch((response)=>{
+      toast.error(`${response.response.data.message}`)
       setisLoading(false);
-      console.log(error)
     }).finally(()=>{
       router.push('/')
       setTimeout(()=>{
@@ -80,7 +79,6 @@ const LoginForm = () => {
         errors={errors}
         required
         type="password"
-        onKeyDown={handleSubmit(onSubmit)}
       />
       <Button
         label={isLoading ? "Loading" : "Login"}
