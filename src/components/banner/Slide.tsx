@@ -32,7 +32,7 @@ const Slide: React.FC<propsType> = ({ img, title }) => {
         </div>
 
         <Image
-          className="w-full max-h-[250px] sm:max-h-[200px] rounded-xl object-cover"
+          className="w-full max-h-[250px] sm:max-h-[300px] rounded-xl object-cover"
           src={img}
           alt="banner"
           width={1920}
