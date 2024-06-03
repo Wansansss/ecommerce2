@@ -93,7 +93,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.phoneNumber}
+        // value={currentUser?.phoneNumber}
       />
       <Input
         id="address"
@@ -101,7 +101,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.address?.address1}
+        // value={currentUser?.address?.address1}
       />
 
       <Input
@@ -110,7 +110,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.address?.village}
+        // value={currentUser?.address?.village}
       />
       <Input
         id="subDistrict"
@@ -118,7 +118,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.address?.subdistrict}
+        // value={currentUser?.address?.subdistrict}
       />
       <Input
         id="city"
@@ -126,7 +126,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.address?.city}
+        // value={currentUser?.address?.city}
       />
       <Input
         id="province"
@@ -134,7 +134,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.address?.province}
+        // value={currentUser?.address?.province}
       />
       <Input
         id="postalCode"
@@ -142,7 +142,7 @@ const FormAlamat = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        value={currentUser?.address?.postalCode}
+        // value={currentUser?.address?.postalCode}
         type="number"
       />
 
