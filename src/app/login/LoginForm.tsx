@@ -10,8 +10,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-
-
 const LoginForm = () => {
   const [isLoading, setisLoading] = useState(false);
   const {
@@ -19,10 +17,10 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
-   defaultValues:{
-    username:"",
-    password:"",
-   }
+    defaultValues: {
+      username: "",
+      password: "",
+    },
   });
 
   const router = useRouter();
@@ -33,31 +31,34 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setisLoading(true);
-    const fullName:any = []
-    const userSecureId:any = []
-    const token:any = []
-    axios.post(process.env.NEXT_PUBLIC_API_URL + '/api/sl/v1/web/users/signin', data
-    ).then((response) => {
-      setisLoading(false);
-      if(response.status === 200) {
-        fullName.push(response.data.data.fullName);
-        userSecureId.push(response.data.data.userSecureId);
-        token.push(response.data.data.token);
-        sessionStorage.setItem('fullName',fullName);
-        sessionStorage.setItem('secureId',userSecureId);
-        sessionStorage.setItem('token',token);
-        toast.success("Berhasil Login");
-      }
-    }).catch((response)=>{
-      toast.error(`${response.response.data.message}`)
-      setisLoading(false);
-    }).finally(()=>{
-      router.push('/')
-      setTimeout(()=>{
-        window.location.reload();
-      },2000)
-    })
-    
+    const fullName: any = [];
+    const userSecureId: any = [];
+    const token: any = [];
+    axios
+      .post(
+        process.env.NEXT_PUBLIC_API_URL + "/api/sl/v1/web/users/signin",
+        data
+      )
+      .then((response) => {
+        setisLoading(false);
+        if (response.status === 200) {
+          fullName.push(response.data.data.fullName);
+          userSecureId.push(response.data.data.userSecureId);
+          token.push(response.data.data.token);
+          sessionStorage.setItem("fullName", fullName);
+          sessionStorage.setItem("secureId", userSecureId);
+          sessionStorage.setItem("token", token);
+          toast.success("Berhasil Login");
+          router.push("/");
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      })
+      .catch((response) => {
+        toast.error(`${response.response.data.message}`);
+        setisLoading(false);
+      })
   };
   return (
     <>
@@ -84,6 +85,11 @@ const LoginForm = () => {
         label={isLoading ? "Loading" : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
+      <p className="text-sm text-start justify-start">
+        <Link href={"/password"} className="underline hover:text-red-600">
+          Lupa Password
+        </Link>
+      </p>
       <p className="text-sm">
         Do not have an account?{" "}
         <Link className="underline hover:text-red-500" href="/register">
