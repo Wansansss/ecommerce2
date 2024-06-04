@@ -38,11 +38,10 @@ const LupaPasswordForm = () => {
       setisLoading(false);
       console.log(response);
       toast.success(`${response.data.message}`)
+      router.push('/login')
     }).catch((response)=>{
       toast.error(`${response.response.data.message}`)
       setisLoading(false);
-    }).finally(()=>{
-      router.push('/login')
     })
     
   };
