@@ -85,16 +85,9 @@ const SideBar = () => {
          {navItems.map((link, i) => (
         <div key={i} className="relative group px-2 py-3 transition-all">
           <div className="flex cursor-pointer items-center gap-2 group-hover:text-red-600 transition-all duration-500">
-            <Link href={link.link ?? "/"}>{link.label}</Link>
-
+            <Link href={link.link ?? "/"}>{link.label}
             {link.children && (
-              <PiCaretDown className=" rotate-180 transition-all duration-500 group-hover:rotate-0" />
-            )}
-          </div>
-          {/* dropdown */}
-
-          {link.children && (
-            <div className="absolute right-0 top-10 hidden w-auto flex-col gap-1 bg-white py-3 px-6 shadow-md transition-all duration-500 group-hover:flex">
+            <div className="overflow-y-scroll max-h-[200px] right-0 top-10 hidden w-auto flex-wrap gap-1 transition-all duration-500 group-hover:flex">
               {kategori?.map((ch: any, index: any) => (
                 <Link
                   key={index}
@@ -108,6 +101,15 @@ const SideBar = () => {
               ))}
             </div>
           )}
+            </Link>
+
+            {link.children && (
+              <PiCaretDown className=" rotate-180 transition-all duration-500 group-hover:rotate-0" />
+            )}
+          </div>
+          {/* dropdown */}
+
+         
         </div>
       ))}
       </div>
