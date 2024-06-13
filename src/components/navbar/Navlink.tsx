@@ -55,7 +55,7 @@ const Navlink = async () => {
           {/* dropdown */}
 
           {link.children && (
-            <div className="absolute right-0 top-10 hidden w-auto flex-col gap-1 bg-white py-3 px-6 shadow-md transition-all duration-500 group-hover:flex">
+            <div className="absolute right-0 top-10 hidden w-auto max-h-[250px] overflow-y-scroll flex-col gap-1 bg-white py-3 px-6 shadow-md transition-all duration-500 group-hover:flex">
               {kategori.data.map((ch: any, index: any) => (
                 <Link
                   key={index}
