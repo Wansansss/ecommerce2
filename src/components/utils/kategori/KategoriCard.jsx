@@ -20,8 +20,8 @@ const KategoriCard = ({ kategori }) => {
               className="block p-1 max-h-[50%] max-w-[50%] hover:scale-100 hover:-translate-y-1 hover:-translate-x-1 hover:opacity-50 duration-300 transition-all object-fill"
             />
 
-            <div className="block h-[50%] p-2 w-full text-white font-semibold bg-red-600/90 hover:text-black/80">
-              <p className="block text-center text-lg">
+            <div className="block h-[50%] p-2 w-full text-white text-wrap font-medium bg-red-600/90 hover:text-black/80">
+              <p className="block text-center">
                 {kategoricard.categoryName}
               </p>
             </div>
